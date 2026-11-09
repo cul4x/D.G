@@ -1,0 +1,1386 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="emerald" data-mode="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>بَيَان | BAYAN — رحلة في أسرار اللغة العربية</title>
+<meta name="description" content="بَيَان: موسوعة تفاعلية متكاملة للنحو والصرف والإملاء العربي.">
+<meta name="theme-color" content="#123D32" id="meta-theme">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ============ بَيَان | BAYAN — الأنماط ============ */
+:root{
+  --font-ui:'IBM Plex Sans Arabic','Segoe UI',Tahoma,'Noto Naskh Arabic',sans-serif;
+  --font-text:'Amiri','Traditional Arabic','Noto Naskh Arabic','Times New Roman',serif;
+  --fs:19; --lh:1.9;
+  --radius:16px; --radius-sm:10px;
+  --shadow:0 1px 2px rgba(0,0,0,.05),0 10px 30px rgba(0,0,0,.06);
+  --ok:#1f7a4d; --ok-bg:#e6f4ec; --bad:#a4332c; --bad-bg:#f9e8e6;
+}
+/* ---------- الثيمات (فاتح) ---------- */
+[data-theme="emerald"]{
+  --primary:#123D32; --secondary:#EDE5D5; --bg:#FAF9F5; --accent:#B69A68;
+  --accent-text:#7B6330; --surface:#FFFFFF; --surface2:#F4EFE3; --text:#1D2A25; --muted:#5B6862;
+  --border:#E3DCCB; --on-primary:#FAF9F5; --head:#123D32;
+}
+[data-theme="navy"]{
+  --primary:#182B49; --secondary:#DCE3EB; --bg:#F7F8FA; --accent:#A6B4C5;
+  --accent-text:#4D5F77; --surface:#FFFFFF; --surface2:#EEF2F6; --text:#1B2535; --muted:#586374;
+  --border:#DDE3EA; --on-primary:#F7F8FA; --head:#182B49;
+}
+[data-theme="burgundy"]{
+  --primary:#642D3A; --secondary:#E9DDCA; --bg:#FAF7F1; --accent:#B38B65;
+  --accent-text:#7C5A38; --surface:#FFFFFF; --surface2:#F4ECDD; --text:#2B1D21; --muted:#6A5A5E;
+  --border:#E8DDCB; --on-primary:#FAF7F1; --head:#642D3A;
+}
+/* ---------- الثيمات (ليلي) ---------- */
+[data-theme="emerald"][data-mode="dark"]{
+  --primary:#1E5A49; --bg:#0E1815; --surface:#15241F; --surface2:#1B2E27; --text:#EDE8DC; --muted:#A9B3AC;
+  --border:#2A3F37; --head:#D6BE8E; --accent-text:#D6BE8E; --ok-bg:#12301f; --bad-bg:#3a1a17; --ok:#7fd1a3; --bad:#f0a199;
+}
+[data-theme="navy"][data-mode="dark"]{
+  --primary:#2A4672; --bg:#0E1522; --surface:#162033; --surface2:#1C2A41; --text:#E8ECF1; --muted:#A3AEBC;
+  --border:#2B3A55; --head:#C3CEDB; --accent-text:#C3CEDB; --ok-bg:#12301f; --bad-bg:#3a1a17; --ok:#7fd1a3; --bad:#f0a199;
+}
+[data-theme="burgundy"][data-mode="dark"]{
+  --primary:#8A4558; --bg:#1A1013; --surface:#26171B; --surface2:#301E23; --text:#F0E6DA; --muted:#B9A9A2;
+  --border:#4A2E36; --head:#D9B995; --accent-text:#D9B995; --ok-bg:#12301f; --bad-bg:#3a1a17; --ok:#7fd1a3; --bad:#f0a199;
+}
+
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{
+  margin:0;font-family:var(--font-ui);font-size:16px;line-height:1.7;color:var(--text);
+  background:var(--bg);transition:background-color .25s,color .25s;
+  padding-bottom:env(safe-area-inset-bottom);
+}
+a{color:var(--head);text-decoration:none}
+a:hover{text-decoration:underline}
+button,input,select{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px;border-radius:6px}
+.wrap{width:100%;max-width:1000px;margin:0 auto;padding:0 16px}
+.skip{position:absolute;inset-inline-start:8px;top:-60px;background:var(--primary);color:var(--on-primary);padding:8px 14px;border-radius:8px;z-index:100}
+.skip:focus{top:8px}
+[hidden]{display:none!important}
+
+/* ---------- الترويسة ---------- */
+.site-header{position:sticky;top:0;z-index:40;background:var(--primary);color:var(--on-primary);border-bottom:3px solid var(--accent);transition:background-color .25s}
+.header-in{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:60px}
+.brand{display:flex;align-items:center;gap:10px;color:var(--on-primary)}
+.brand:hover{text-decoration:none}
+.logo{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;border:2px solid var(--accent);font-family:var(--font-text);font-size:26px;font-weight:700;line-height:1;padding-bottom:6px}
+.brand-text{display:flex;flex-direction:column;line-height:1.1}
+.brand-text b{font-family:var(--font-text);font-size:24px}
+.brand-text small{letter-spacing:.3em;font-size:10px;opacity:.8;direction:ltr;text-align:start}
+.actions{display:flex;gap:4px}
+.icon-btn{position:relative;width:42px;height:42px;border-radius:12px;border:0;background:transparent;display:grid;place-items:center;color:var(--on-primary)}
+.icon-btn:hover{background:rgba(255,255,255,.12);text-decoration:none}
+.icon-btn svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.badge{position:absolute;top:3px;inset-inline-end:3px;min-width:18px;height:18px;border-radius:9px;background:var(--accent);color:#1b1b1b;font-size:11px;font-weight:700;display:grid;place-items:center;padding:0 4px}
+
+main{padding-top:20px;padding-bottom:40px;min-height:70vh;outline:0}
+h1,h2,h3{font-family:var(--font-ui);color:var(--head);line-height:1.35;margin:0 0 .5em}
+
+/* ---------- الواجهة الرئيسية ---------- */
+.hero{background:linear-gradient(160deg,var(--primary),color-mix(in srgb,var(--primary) 75%,#000));color:var(--on-primary);border-radius:24px;padding:34px 22px;text-align:center;position:relative;overflow:hidden;box-shadow:var(--shadow)}
+.hero::before{content:"";position:absolute;inset:10px;border:1px solid color-mix(in srgb,var(--accent) 60%,transparent);border-radius:18px;pointer-events:none}
+.eyebrow{margin:0 0 6px;color:var(--accent);font-weight:600;letter-spacing:.05em}
+.brand-title{font-family:var(--font-text);font-size:clamp(40px,10vw,64px);color:var(--on-primary);margin:0}
+.brand-title span{font-size:.45em;letter-spacing:.2em;opacity:.8;direction:ltr;display:inline-block}
+.tagline{font-family:var(--font-text);font-size:clamp(20px,4.6vw,28px);color:var(--accent);margin:.2em 0 .6em}
+.lead{max-width:620px;margin:0 auto 20px;opacity:.92}
+.search{display:flex;gap:8px;max-width:520px;margin:0 auto}
+.search input{flex:1;min-width:0;padding:13px 16px;border-radius:14px;border:2px solid transparent;background:#fff;color:#1b1b1b;font-size:16px}
+.search input:focus{border-color:var(--accent);outline:0}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:11px 18px;border-radius:12px;border:1px solid var(--border);background:var(--surface);color:var(--text);font-weight:600;transition:transform .15s,box-shadow .15s}
+.btn:hover{text-decoration:none;box-shadow:var(--shadow)}
+.btn:active{transform:scale(.98)}
+.btn.primary{background:var(--accent);color:#1b1b1b;border-color:var(--accent)}
+.search .btn{background:var(--accent);color:#1b1b1b;border-color:var(--accent)}
+.btn.solid{background:var(--primary);color:var(--on-primary);border-color:var(--primary)}
+.btn.danger{color:var(--bad);border-color:var(--bad)}
+
+.sec-head{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin:34px 0 14px}
+.sec-head h2{margin:0;font-size:1.45rem}
+.sec-head p{margin:0;color:var(--muted);font-size:.95rem}
+.grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow);color:var(--text);transition:transform .2s,border-color .2s}
+a.card:hover{text-decoration:none;transform:translateY(-3px);border-color:var(--accent)}
+.sec-card h3{font-size:1.3rem;margin-bottom:.2em}
+.sec-card p{margin:.2em 0 .7em;color:var(--muted);font-size:.95rem}
+.sec-mark{display:inline-grid;place-items:center;min-width:56px;height:56px;padding:0 10px;border-radius:14px;background:var(--surface2);border:1px solid var(--accent);color:var(--accent-text);font-family:var(--font-text);font-size:1.4rem;font-weight:700;margin-bottom:10px}
+.mini{margin:0 0 10px;padding:0;list-style:none;font-size:.9rem;color:var(--muted)}
+.mini li{padding:3px 0;border-top:1px dashed var(--border)}
+.more{color:var(--accent-text);font-weight:600;font-size:.92rem}
+
+/* ---------- المظهر ---------- */
+.theme-card{text-align:start;display:flex;flex-direction:column;gap:10px;cursor:pointer;background:var(--surface);border:2px solid var(--border);border-radius:var(--radius);padding:14px}
+.theme-card[aria-pressed="true"]{border-color:var(--accent);box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 35%,transparent)}
+.preview{border-radius:12px;overflow:hidden;border:1px solid rgba(0,0,0,.12);height:92px;display:flex;flex-direction:column}
+.preview .pv-bar{height:26px;display:flex;align-items:center;padding:0 10px;gap:6px}
+.preview .pv-bar i{width:8px;height:8px;border-radius:50%}
+.preview .pv-body{flex:1;padding:10px;display:flex;flex-direction:column;gap:6px}
+.preview .pv-body b{height:8px;border-radius:4px;display:block}
+.swatches{display:flex;gap:6px}
+.swatches i{width:24px;height:24px;border-radius:50%;border:1px solid rgba(0,0,0,.15);display:block}
+.theme-card strong{font-size:1.05rem;color:var(--head)}
+.theme-card small{color:var(--muted)}
+.seg{display:inline-flex;border:1px solid var(--border);border-radius:12px;overflow:hidden;background:var(--surface)}
+.seg button{border:0;background:transparent;padding:10px 18px;font-weight:600}
+.seg button[aria-pressed="true"]{background:var(--primary);color:var(--on-primary)}
+.seg button+button{border-inline-start:1px solid var(--border)}
+.mode-row{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin-top:16px}
+.mode-row span{color:var(--muted)}
+
+/* ---------- القوائم والصفحات ---------- */
+.crumbs{display:flex;flex-wrap:wrap;gap:6px;color:var(--muted);font-size:.9rem;margin-bottom:10px}
+.crumbs a{color:var(--muted)}
+.page-title{font-size:clamp(1.6rem,5vw,2.2rem);margin-bottom:.2em}
+.page-sub{color:var(--muted);margin:0 0 18px}
+.topic-list{display:grid;gap:12px}
+.topic-item{display:flex;gap:14px;align-items:flex-start}
+.topic-num{flex:none;width:42px;height:42px;border-radius:12px;background:var(--primary);color:var(--on-primary);display:grid;place-items:center;font-weight:700}
+.topic-item h3{margin:0 0 .15em;font-size:1.12rem}
+.topic-item p{margin:0;color:var(--muted);font-size:.93rem}
+.pill{display:inline-block;font-size:.78rem;padding:2px 10px;border-radius:999px;background:var(--surface2);border:1px solid var(--border);color:var(--accent-text);margin-inline-end:6px;margin-top:6px}
+.empty{text-align:center;padding:40px 16px;color:var(--muted)}
+
+/* ---------- صفحة الموضوع ---------- */
+.topic-top{display:flex;gap:12px;justify-content:space-between;align-items:flex-start}
+.fav-btn{flex:none;width:46px;height:46px;border-radius:14px;border:1px solid var(--border);background:var(--surface);display:grid;place-items:center}
+.fav-btn svg{width:22px;height:22px;stroke:var(--accent-text);stroke-width:1.8;fill:none;stroke-linejoin:round}
+.fav-btn[aria-pressed="true"]{background:var(--primary)}
+.fav-btn[aria-pressed="true"] svg{fill:var(--accent);stroke:var(--accent)}
+.toc{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 6px}
+.chip{border:1px solid var(--border);background:var(--surface);border-radius:999px;padding:5px 14px;font-size:.88rem;color:var(--text)}
+.chip:hover{border-color:var(--accent)}
+.reading{font-size:calc(var(--fs) * 1px);line-height:var(--lh);max-width:780px}
+.reading .b-h{font-size:1.3em;margin-top:1.5em;padding-bottom:.25em;border-bottom:2px solid var(--accent);scroll-margin-top:80px}
+.reading .b-p{margin:.6em 0}
+.b-list{padding-inline-start:1.4em;margin:.5em 0}
+.b-list li{margin:.25em 0}
+.reading b{color:var(--head)}
+.box{border-radius:var(--radius-sm);padding:12px 16px;margin:1em 0;background:var(--surface2);border:1px solid var(--border);border-inline-start:5px solid var(--accent)}
+.box .box-title{font-weight:700;color:var(--accent-text);font-size:.85em;margin-bottom:2px}
+.box.note{border-inline-start-color:var(--primary)}
+.box.khilaf{border-style:dashed;border-inline-start-style:solid;border-inline-start-color:var(--accent-text)}
+.table-wrap{overflow-x:auto;margin:1em 0;border:1px solid var(--border);border-radius:var(--radius-sm);background:var(--surface);-webkit-overflow-scrolling:touch}
+table{border-collapse:collapse;width:100%;font-size:.88em;min-width:460px}
+th,td{padding:9px 12px;text-align:start;border-bottom:1px solid var(--border);vertical-align:top}
+th{background:var(--primary);color:var(--on-primary);font-weight:600;white-space:nowrap}
+tbody tr:nth-child(even){background:var(--surface2)}
+tbody tr:last-child td{border-bottom:0}
+.ex-list{display:grid;gap:10px;margin:1em 0}
+.ex{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-sm);padding:12px 16px}
+.ex .ar{font-family:var(--font-text);font-size:1.25em;font-weight:700;color:var(--head);margin:0}
+.ex .i3{margin:.3em 0 0;font-size:.88em;color:var(--muted);line-height:1.8}
+.ex-title{font-weight:700;color:var(--accent-text);font-size:.9em;margin-top:1em}
+.pager{display:flex;gap:10px;justify-content:space-between;margin:34px 0 10px;flex-wrap:wrap}
+.pager a{flex:1 1 220px;border:1px solid var(--border);border-radius:var(--radius-sm);padding:12px 16px;background:var(--surface);color:var(--text)}
+.pager small{display:block;color:var(--muted)}
+
+/* ---------- الاختبار ---------- */
+.quiz{margin-top:34px;border:2px solid var(--accent);border-radius:var(--radius);padding:18px;background:var(--surface)}
+.quiz h2{margin-top:0;font-size:1.3rem}
+.quiz-opt-tag{font-size:.8rem;background:var(--surface2);border:1px solid var(--border);border-radius:999px;padding:2px 10px;color:var(--muted);margin-inline-start:6px}
+.q{padding:14px 0;border-top:1px dashed var(--border)}
+.q-text{font-weight:600;margin:0 0 10px;font-size:1.02rem}
+.q-text .n{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:50%;background:var(--primary);color:var(--on-primary);font-size:.85rem;margin-inline-end:8px}
+.opts{display:grid;gap:8px}
+.opt{text-align:start;padding:11px 14px;border-radius:12px;border:1.5px solid var(--border);background:var(--surface);font-family:var(--font-text);font-size:1.15rem}
+.opt:hover:not(:disabled){border-color:var(--accent)}
+.opt:disabled{cursor:default;opacity:1}
+.opt.correct{border-color:var(--ok);background:var(--ok-bg);color:var(--ok)}
+.opt.wrong{border-color:var(--bad);background:var(--bad-bg);color:var(--bad)}
+.fill{display:flex;gap:8px;flex-wrap:wrap}
+.fill input{flex:1 1 180px;padding:10px 14px;border-radius:12px;border:1.5px solid var(--border);background:var(--surface);font-family:var(--font-text);font-size:1.15rem}
+.fill input:disabled{opacity:.85}
+.fill input.correct{border-color:var(--ok);background:var(--ok-bg)}
+.fill input.wrong{border-color:var(--bad);background:var(--bad-bg)}
+.why{margin-top:10px;padding:10px 14px;border-radius:10px;font-size:.95rem;line-height:1.8}
+.why.ok{background:var(--ok-bg);color:var(--ok)}
+.why.no{background:var(--bad-bg);color:var(--bad)}
+.why b{color:inherit}
+.score{text-align:center;padding:16px;border-radius:12px;background:var(--surface2);margin-top:14px}
+.score strong{font-size:1.6rem;color:var(--head)}
+
+/* ---------- البحث والإعدادات ---------- */
+.search-page input[type=search]{width:100%;padding:13px 16px;border-radius:14px;border:2px solid var(--border);background:var(--surface);font-size:16px}
+.search-page input[type=search]:focus{border-color:var(--accent);outline:0}
+mark{background:color-mix(in srgb,var(--accent) 45%,transparent);color:inherit;border-radius:3px;padding:0 2px}
+.snip{margin:.4em 0 0;color:var(--muted);font-size:.92rem;line-height:1.8}
+.set-row{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;padding:14px 0;border-top:1px dashed var(--border)}
+.set-row:first-of-type{border-top:0}
+.set-row label,.set-row .lbl{font-weight:600}
+input[type=range]{width:min(260px,100%);accent-color:var(--accent-text)}
+.sample{margin-top:12px;padding:14px;border-radius:12px;background:var(--surface2);border:1px solid var(--border);font-family:var(--font-text)}
+
+/* ---------- التذييل ---------- */
+.site-footer{background:var(--primary);color:var(--on-primary);border-top:3px solid var(--accent);padding:26px 0 30px;text-align:center}
+.credit{display:inline-block;padding:14px 28px;border:1px solid var(--accent);border-radius:14px;margin-bottom:14px}
+.credit-ar{font-family:var(--font-text);font-size:1.35rem;font-weight:700;color:var(--on-primary)}
+.credit-en{font-size:1.05rem;letter-spacing:.14em;color:var(--accent);margin-top:2px}
+.foot-links{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-bottom:8px}
+.foot-links a{color:var(--on-primary);opacity:.9}
+.tag{margin:0;font-family:var(--font-text);color:var(--accent);font-size:1.05rem}
+.credit-card{text-align:center;border:1px solid var(--accent);border-radius:var(--radius);padding:22px;background:var(--surface2);margin:18px 0}
+
+.fade{animation:fade .35s ease both}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+@media (max-width:520px){
+  .hero{padding:28px 14px}
+  .topic-top{flex-direction:row}
+  .search{flex-direction:column}
+}
+@media print{.site-header,.site-footer,.quiz,.pager,.toc,.fav-btn{display:none!important}}
+
+</style>
+<script>
+/* تطبيق الثيم المحفوظ مبكرًا لتفادي الوميض */
+(function(){try{var s=JSON.parse(localStorage.getItem('bayan:v1')||'null');if(s){var r=document.documentElement;if(['emerald','navy','burgundy'].indexOf(s.theme)>-1)r.setAttribute('data-theme',s.theme);var d=s.mode==='dark'||(s.mode!=='light'&&window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches);r.setAttribute('data-mode',d?'dark':'light');}}catch(e){}})();
+</script>
+</head>
+<body>
+<a class="skip" href="#main">تخطَّ إلى المحتوى</a>
+
+<header class="site-header">
+  <div class="wrap header-in">
+    <a class="brand" href="#/" aria-label="بَيَان — الصفحة الرئيسية">
+      <span class="logo" aria-hidden="true">ب</span>
+      <span class="brand-text"><b>بَيَان</b><small>BAYAN</small></span>
+    </a>
+    <nav class="actions" aria-label="أدوات سريعة">
+      <a class="icon-btn" href="#/search" aria-label="بحث">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+      </a>
+      <a class="icon-btn" href="#/favorites" aria-label="المفضلة">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h12v18l-6-4-6 4z"/></svg>
+        <span class="badge" id="fav-badge" hidden>0</span>
+      </a>
+      <button class="icon-btn" type="button" id="mode-btn" data-action="toggle-mode" aria-label="تبديل الوضع الليلي">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/></svg>
+      </button>
+      <a class="icon-btn" href="#/settings" aria-label="الإعدادات">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1L7 17M17 7l2.1-2.1"/></svg>
+      </a>
+    </nav>
+  </div>
+</header>
+
+<main id="main" class="wrap" tabindex="-1">
+  <noscript><p class="box note">يحتاج التطبيق إلى تفعيل JavaScript ليعمل.</p></noscript>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="credit">
+      <div class="credit-ar">إعداد الطالب: محمد بنيران</div>
+      <div class="credit-en" dir="ltr" lang="en">Mohammed Beniran</div>
+    </div>
+    <nav class="foot-links" aria-label="روابط التذييل">
+      <a href="#/about">حول التطبيق</a>
+      <a href="#/appearance">المظهر</a>
+      <a href="#/favorites">المفضلة</a>
+      <a href="#/settings">الإعدادات</a>
+    </nav>
+    <p class="tag">بَيَان — رحلة في أسرار اللغة العربية</p>
+  </div>
+</footer>
+
+<script>
+/* بَيَان — البيانات الأساسية: الأقسام والثيمات. المواضيع تُضاف من الملفات الأخرى. */
+window.BAYAN = {
+  sections: [
+    { id: 'nahw', title: 'النحو', mark: 'نَحْو',
+      blurb: 'أحكام الإعراب وتركيب الجملة: أقسام الكلمة، المبتدأ والخبر، النواسخ، الفاعل ونائب الفاعل.' },
+    { id: 'sarf', title: 'الصرف', mark: 'صَرْف',
+      blurb: 'بنية الكلمة وأوزانها: الميزان الصرفي، الصحيح والمعتل، المزيد، المشتقات.' },
+    { id: 'imla', title: 'الإملاء', mark: 'إملاء',
+      blurb: 'ضبط الكتابة: همزتا الوصل والقطع، رسم الهمزة، التاء، الألف اللينة.' }
+  ],
+  themes: [
+    { id: 'emerald',  name: 'الزمردي والكريمي', hint: 'الثيم الافتراضي', primary: '#123D32', secondary: '#EDE5D5', bg: '#FAF9F5', accent: '#B69A68' },
+    { id: 'navy',     name: 'الكحلي والفضي',   hint: 'هادئ ورصين',     primary: '#182B49', secondary: '#DCE3EB', bg: '#F7F8FA', accent: '#A6B4C5' },
+    { id: 'burgundy', name: 'العنابي والبيج',  hint: 'دافئ وكلاسيكي',  primary: '#642D3A', secondary: '#E9DDCA', bg: '#FAF7F1', accent: '#B38B65' }
+  ],
+  topics: []
+};
+
+</script>
+<script>
+/* بَيَان — قسم النحو */
+/* بنية الكتل: h عنوان، p فقرة، list قائمة، rule قاعدة، note تنبيه، khilaf خلاف علمي، table جدول، ex أمثلة مع إعراب */
+/* بنية الأسئلة: mcq (a=رقم الخيار)، tf (a=true/false)، fill (a=الإجابة، alts=بدائل) */
+BAYAN.topics.push(
+
+{ id: 'kalima', sec: 'nahw', title: 'أقسام الكلمة: الاسم والفعل والحرف',
+  sum: 'الكلمة في العربية اسم أو فعل أو حرف، وهذا التقسيم أساس كل ما يأتي بعده في النحو.',
+  blocks: [
+    { t: 'p', x: 'الكلمة لفظ مفرد يدل على معنى. وقد دلّ استقراء كلام العرب على أن الكلمة لا تخرج عن ثلاثة أقسام: <b>اسم</b> و<b>فعل</b> و<b>حرف</b>.' },
+    { t: 'h', x: 'علامات الاسم' },
+    { t: 'list', items: [
+      '<b>الجر</b>: بحرف جر أو بالإضافة، نحو «في البيتِ»، «كتابُ الطالبِ».',
+      '<b>التنوين</b>: نحو «كتابٌ»، «علمًا».',
+      '<b>النداء</b>: نحو «يا طالبُ».',
+      '<b>دخول «أل»</b>: نحو «الكتاب».',
+      '<b>الإسناد إليه</b>: أن يُخبر عنه، كأن يكون مبتدأً أو فاعلًا: «العلمُ نورٌ».'
+    ] },
+    { t: 'h', x: 'علامات الفعل' },
+    { t: 'list', items: [
+      '<b>«قد»</b>: نحو «قد نجحَ».',
+      '<b>السين وسوف</b>: نحو «سيكتبُ»، «سوف أسافرُ».',
+      '<b>تاء التأنيث الساكنة</b>: نحو «كتبَتْ».',
+      '<b>تاء الفاعل</b>: نحو «كتبتُ».',
+      '<b>ياء المخاطبة</b>: نحو «اكتبي».'
+    ] },
+    { t: 'table', head: ['القسم', 'تعريفه', 'أمثلة'], rows: [
+      ['الاسم', 'ما دلّ على معنى في نفسه غير مقترن بزمن', 'محمد، مدرسة، علم، هو'],
+      ['الفعل', 'ما دلّ على حدث مقترن بزمن', 'كتبَ، يكتبُ، اكتبْ'],
+      ['الحرف', 'ما لا يظهر معناه إلا مع غيره، ولا يقبل علامات الاسم ولا الفعل', 'في، هل، لم، سوف']
+    ] },
+    { t: 'h', x: 'أقسام الفعل بحسب الزمن' },
+    { t: 'table', head: ['الفعل', 'دلالته', 'مثال', 'ملاحظة'], rows: [
+      ['الماضي', 'حدث وقع وانقضى', 'كتبَ', 'مبني، ويقبل تاء التأنيث الساكنة وتاء الفاعل'],
+      ['المضارع', 'حدث في الحال أو الاستقبال', 'يكتبُ', 'يبدأ بأحد أحرف «أنيت»، وهو معرب ما لم تتصل به نون التوكيد أو نون النسوة'],
+      ['الأمر', 'طلب حدوث فعل', 'اكتبْ', 'يقبل ياء المخاطبة ونون التوكيد، ولا يقبل «لم»']
+    ] },
+    { t: 'note', x: 'أسماء الأفعال مثل «هيهات» و«صه» تدل على معنى الفعل لكنها لا تقبل علامات الفعل، ولذلك عدّها النحاة <b>أسماء</b> لا أفعالًا.' }
+  ],
+  quiz: [
+    { t: 'mcq', q: 'ما نوع الكلمة «في»؟', o: ['اسم', 'فعل', 'حرف'], a: 2, w: 'هي حرف جر؛ لا تقبل علامات الاسم ولا علامات الفعل، ولا يظهر معناها إلا في الجملة.' },
+    { t: 'tf', q: 'كلمة «كتابٌ» اسم لأنها تقبل التنوين.', a: true, w: 'التنوين من علامات الاسم.' },
+    { t: 'mcq', q: 'أي الكلمات التالية فعل؟', o: ['مدرسة', 'ذهبَتْ', 'هل'], a: 1, w: 'قبلت تاء التأنيث الساكنة، وهي من علامات الفعل.' },
+    { t: 'fill', q: 'الفعل الذي يدل على طلب وقوع الحدث يسمى فعل ____.', a: 'الأمر', alts: ['أمر'], w: 'فعل الأمر نحو «اكتبْ».' }
+  ] },
+
+{ id: 'irab', sec: 'nahw', title: 'علامات الإعراب الأصلية والفرعية',
+  sum: 'الإعراب تغيّر أواخر الكلم بحسب موقعها في الجملة، وله علامات أصلية وأخرى فرعية تنوب عنها.',
+  blocks: [
+    { t: 'p', x: 'الإعراب: تغيّر أواخر الكلمات لاختلاف العوامل الداخلة عليها لفظًا أو تقديرًا. والكلمة إما <b>معربة</b> تتغير علامة آخرها بتغير موقعها، وإما <b>مبنية</b> يلزم آخرها حالة واحدة (كالضمائر وأسماء الإشارة وأكثر الحروف).' },
+    { t: 'h', x: 'العلامات الأصلية' },
+    { t: 'table', head: ['الحالة', 'العلامة الأصلية', 'مثال'], rows: [
+      ['الرفع', 'الضمة', 'يجتهدُ الطالبُ'],
+      ['النصب', 'الفتحة', 'قرأتُ الكتابَ'],
+      ['الجر', 'الكسرة', 'مررتُ بالطالبِ'],
+      ['الجزم (للفعل)', 'السكون', 'لم يكتبْ']
+    ] },
+    { t: 'h', x: 'العلامات الفرعية' },
+    { t: 'table', head: ['النوع', 'الرفع', 'النصب', 'الجر', 'مثال'], rows: [
+      ['الأسماء الخمسة', 'الواو', 'الألف', 'الياء', 'جاء أبوك، رأيتُ أباك، مررتُ بأبيك'],
+      ['المثنى', 'الألف', 'الياء', 'الياء', 'جاء الطالبانِ، رأيتُ الطالبَيْنِ، مررتُ بالطالبَيْنِ'],
+      ['جمع المذكر السالم', 'الواو', 'الياء', 'الياء', 'جاء المعلمونَ، رأيتُ المعلمينَ، مررتُ بالمعلمينَ'],
+      ['جمع المؤنث السالم', 'الضمة', 'الكسرة', 'الكسرة', 'جاءت المعلماتُ، رأيتُ المعلماتِ، مررتُ بالمعلماتِ'],
+      ['الممنوع من الصرف', 'الضمة', 'الفتحة', 'الفتحة', 'جاء أحمدُ، رأيتُ أحمدَ، مررتُ بأحمدَ']
+    ] },
+    { t: 'rule', title: 'شروط مهمة', x: 'الأسماء الخمسة هي: أبو، أخو، حمو، فو، ذو (بمعنى صاحب). وتُعرب بالحروف بشرطين: أن تكون <b>مضافة</b>، وأن تكون إضافتها <b>لغير ياء المتكلم</b>. فنقول «هذا أبي» بضمة مقدرة. أما الممنوع من الصرف فيُجر بالفتحة نيابة عن الكسرة <b>ما لم يُضَف أو تدخل عليه «أل»</b>، فنقول: «مررتُ بأحمدَ» و«مررتُ بأحمدِكم» و«مررتُ بالأحمدِ».' },
+    { t: 'h', x: 'الأفعال: الأفعال الخمسة والمعتل' },
+    { t: 'table', head: ['الباب', 'الرفع', 'النصب والجزم', 'مثال'], rows: [
+      ['الأفعال الخمسة (يفعلان، تفعلان، يفعلون، تفعلون، تفعلين)', 'ثبوت النون', 'حذف النون', 'يكتبون، لن يكتبوا، لم يكتبوا'],
+      ['المضارع المعتل الآخر', 'ضمة مقدرة', 'الجزم بحذف حرف العلة', 'لم يرمِ، لم يدعُ، لم يسعَ']
+    ] },
+    { t: 'h', x: 'الإعراب المقدّر' },
+    { t: 'p', x: 'تُقدَّر العلامة ولا تظهر لسبب من ثلاثة: <b>التعذر</b> في الاسم المقصور («الفتى»، «العصا»)، <b>الثقل</b> في الاسم المنقوص عند الرفع والجر («القاضي»)، و<b>المناسبة</b> أي اشتغال المحل بحركة ياء المتكلم («كتابي»).' },
+    { t: 'ex', items: [
+      { s: 'جاء أبوكَ', i: 'جاء: فعل ماضٍ مبني على الفتح. أبوك: فاعل مرفوع وعلامة رفعه الواو لأنه من الأسماء الخمسة، وهو مضاف، والكاف ضمير متصل مبني في محل جر بالإضافة.' },
+      { s: 'رأيتُ الطالبَيْنِ', i: 'الطالبين: مفعول به منصوب وعلامة نصبه الياء لأنه مثنى، والنون عوض عن التنوين في الاسم المفرد.' },
+      { s: 'مررتُ بالمعلماتِ', i: 'بالمعلمات: الباء حرف جر، المعلمات: اسم مجرور وعلامة جره الكسرة لأنه جمع مؤنث سالم.' },
+      { s: 'لن يكتبوا', i: 'لن: حرف نصب. يكتبوا: فعل مضارع منصوب وعلامة نصبه حذف النون لأنه من الأفعال الخمسة، والواو ضمير متصل مبني في محل رفع فاعل، والألف فارقة.' },
+      { s: 'جاء الفتى', i: 'الفتى: فاعل مرفوع وعلامة رفعه الضمة المقدرة على الألف منع من ظهورها التعذر.' },
+      { s: 'جاء القاضي', i: 'القاضي: فاعل مرفوع وعلامة رفعه الضمة المقدرة على الياء منع من ظهورها الثقل.' }
+    ] }
+  ],
+  quiz: [
+    { t: 'mcq', q: 'ما علامة نصب جمع المذكر السالم؟', o: ['الفتحة', 'الياء', 'الألف', 'الكسرة'], a: 1, w: 'يُرفع بالواو، ويُنصب ويُجر بالياء.' },
+    { t: 'mcq', q: 'في «رأيتُ أخاك»: ما علامة نصب «أخاك»؟', o: ['الفتحة', 'الواو', 'الألف', 'الياء'], a: 2, w: 'أخاك من الأسماء الخمسة المضافة، وتُنصب بالألف.' },
+    { t: 'tf', q: 'الفعل «يكتبون» يُرفع بثبوت النون.', a: true, w: 'من الأفعال الخمسة، ترفع بثبوت النون وتنصب وتجزم بحذفها.' },
+    { t: 'tf', q: 'الممنوع من الصرف يُجر بالكسرة دائمًا.', a: false, w: 'يُجر بالفتحة نيابة عن الكسرة ما لم يُضف أو تدخل عليه «أل».' },
+    { t: 'mcq', q: 'ما علامة جزم «لم يرمِ»؟', o: ['السكون', 'حذف حرف العلة', 'حذف النون', 'الكسرة'], a: 1, w: 'الفعل المضارع المعتل الآخر يُجزم بحذف حرف العلة.' },
+    { t: 'fill', q: 'الفعل «يكتبان» يُرفع بثبوت ____.', a: 'النون', alts: ['نون'], w: 'الأفعال الخمسة ترفع بثبوت النون.' }
+  ] },
+
+{ id: 'jumla', sec: 'nahw', title: 'الجملة الاسمية والجملة الفعلية',
+  sum: 'تُصنَّف الجملة بحسب أول كلمة فيها، وبعض الجمل لها محل من الإعراب وبعضها لا محل له.',
+  blocks: [
+    { t: 'p', x: 'الجملة ما تألّف من مسند ومسند إليه، وتنقسم بحسب صدرها (أول كلمة فيها) إلى اسمية وفعلية.' },
+    { t: 'table', head: ['النوع', 'تبدأ بـ', 'ركناها', 'مثال'], rows: [
+      ['الجملة الاسمية', 'اسم', 'مبتدأ وخبر', 'العلمُ نورٌ'],
+      ['الجملة الفعلية', 'فعل', 'فعل وفاعل (أو نائب فاعل)', 'نجحَ الطالبُ']
+    ] },
+    { t: 'rule', title: 'العبرة بصدر الجملة', x: 'جملة «في الدار رجلٌ» اسمية؛ لأنها بدأت بشبه جملة هو خبر مقدم. وجملة «هل نجحَ الطالبُ؟» فعلية؛ لأن حرف الاستفهام لا يغيّر الحكم، فالعبرة بالفعل الذي يليه.' },
+    { t: 'khilaf', x: 'في «محمدٌ قامَ» يرى <b>البصريون</b> أن الجملة اسمية: «محمد» مبتدأ وجملة «قام» خبر، ولا يجيزون تقديم الفاعل على فعله. أما <b>الكوفيون</b> فيجيزون تقديم الفاعل فيعدّونها جملة فعلية فاعلها «محمد».' },
+    { t: 'h', x: 'الجمل التي لها محل من الإعراب والتي لا محل لها' },
+    { t: 'p', x: 'الجملة التي تحل محل المفرد يكون لها محله من الإعراب، والجملة التي لا تحل محل مفرد لا محل لها.' },
+    { t: 'table', head: ['لها محل من الإعراب', 'لا محل لها من الإعراب'], rows: [
+      ['الواقعة خبرًا (رفع أو نصب بحسب الناسخ)', 'الابتدائية'],
+      ['الواقعة حالًا (نصب)', 'الاستئنافية'],
+      ['الواقعة مفعولًا به، ومنها مقول القول (نصب)', 'الواقعة صلة للموصول'],
+      ['الواقعة نعتًا أو مضافًا إليه', 'الواقعة جوابًا لشرط غير جازم'],
+      ['الواقعة جوابًا لشرط جازم مقترنة بالفاء أو «إذا» الفجائية (جزم)', 'جواب القسم، والتفسيرية، والاعتراضية'],
+      ['التابعة لجملة لها محل', 'التابعة لجملة لا محل لها']
+    ] },
+    { t: 'ex', items: [
+      { s: 'الصدقُ يُنجي صاحبَه', i: 'الصدق: مبتدأ مرفوع بالضمة. يُنجي: فعل مضارع مرفوع وعلامة رفعه الضمة المقدرة على الياء للثقل، والفاعل ضمير مستتر تقديره هو. صاحبَه: مفعول به منصوب بالفتحة وهو مضاف، والهاء ضمير في محل جر بالإضافة. وجملة «يُنجي صاحبه» في محل رفع خبر.' },
+      { s: 'جاء الذي نجحَ', i: 'الذي: اسم موصول مبني في محل رفع فاعل. وجملة «نجح» لا محل لها من الإعراب لأنها صلة الموصول.' }
+    ] }
+  ],
+  quiz: [
+    { t: 'mcq', q: 'ما نوع الجملة «في الحديقة أطفالٌ»؟', o: ['فعلية', 'اسمية', 'شبه جملة فقط'], a: 1, w: 'بدأت بخبر مقدم هو شبه جملة، و«أطفالٌ» مبتدأ مؤخر، فهي اسمية.' },
+    { t: 'mcq', q: 'ما نوع الجملة «ينجحُ المجتهدُ»؟', o: ['اسمية', 'فعلية', 'شرطية'], a: 1, w: 'بدأت بفعل وفاعله «المجتهد».' },
+    { t: 'tf', q: 'جملة الصلة لها محل من الإعراب.', a: false, w: 'جملة صلة الموصول لا محل لها من الإعراب.' },
+    { t: 'tf', q: 'في «الطالبُ يكتبُ» جملة «يكتب» في محل رفع خبر.', a: true, w: 'وقعت الجملة الفعلية خبرًا للمبتدأ المرفوع.' },
+    { t: 'mcq', q: 'ما ركنا الجملة الفعلية؟', o: ['مبتدأ وخبر', 'فعل وفاعل', 'اسم وحرف'], a: 1, w: 'الفعل والفاعل، أو الفعل ونائب الفاعل.' }
+  ] },
+
+{ id: 'mubtada', sec: 'nahw', title: 'المبتدأ والخبر',
+  sum: 'ركنا الجملة الاسمية، وكلاهما مرفوع. وللخبر أنواع، وله حالات في التقديم والمطابقة.',
+  blocks: [
+    { t: 'p', x: '<b>المبتدأ</b> اسم مرفوع يقع في أول الجملة الاسمية ويُخبَر عنه، و<b>الخبر</b> ما أتمّ معنى المبتدأ وحقّق الفائدة. وهما مرفوعان: «العلمُ نورٌ».' },
+    { t: 'rule', title: 'الأصل في المبتدأ التعريف', x: 'الأصل أن يكون المبتدأ معرفة، ولا يقع نكرة إلا إذا أفاد، ومن مواضع ذلك: <b>1)</b> أن يتقدم خبره شبه جملة: «في الدار رجلٌ». <b>2)</b> أن يُوصف: «رجلٌ كريمٌ عندنا». <b>3)</b> أن يقع بعد نفي أو استفهام: «هل أحدٌ حاضرٌ؟».' },
+    { t: 'h', x: 'أنواع الخبر' },
+    { t: 'table', head: ['النوع', 'مثال', 'ملاحظة'], rows: [
+      ['مفرد (ليس جملة ولا شبهها)', 'الجوُّ جميلٌ', 'يشمل المثنى والجمع'],
+      ['جملة اسمية', 'محمدٌ أبوه كريمٌ', 'يلزم رابط يعود على المبتدأ، وهنا الضمير في «أبوه»'],
+      ['جملة فعلية', 'العلمُ ينفعُ صاحبَه', 'الرابط الضمير في «صاحبَه»'],
+      ['شبه جملة', 'الكتابُ على المكتبِ', 'جار ومجرور أو ظرف متعلق بمحذوف']
+    ] },
+    { t: 'h', x: 'المطابقة' },
+    { t: 'p', x: 'يطابق الخبر المفرد المشتق مبتدأه في الإفراد والتثنية والجمع والتذكير والتأنيث: «الطالبتانِ مجتهدتانِ». أما جمع ما لا يعقل فيُعامل معاملة المفردة المؤنثة: «الكتبُ مفيدةٌ».' },
+    { t: 'h', x: 'تقديم الخبر' },
+    { t: 'list', items: [
+      '<b>جائز</b>: «زيدٌ في الدار» و«في الدار زيدٌ».',
+      '<b>واجب</b> إذا كان المبتدأ نكرة والخبر شبه جملة: «في الدار رجلٌ».',
+      '<b>واجب</b> إذا كان الخبر له الصدارة كاسم الاستفهام: «أين الكتابُ؟».'
+    ] },
+    { t: 'ex', items: [
+      { s: 'العلمُ نورٌ', i: 'العلم: مبتدأ مرفوع وعلامة رفعه الضمة الظاهرة. نور: خبر مرفوع وعلامة رفعه الضمة الظاهرة.' },
+      { s: 'الكتابُ على المكتبِ', i: 'الكتاب: مبتدأ مرفوع. على المكتب: جار ومجرور متعلقان بمحذوف في محل رفع خبر.' },
+      { s: 'المعلمون مخلصونَ', i: 'المعلمون: مبتدأ مرفوع وعلامة رفعه الواو لأنه جمع مذكر سالم. مخلصون: خبر مرفوع وعلامة رفعه الواو لأنه جمع مذكر سالم.' },
+      { s: 'في الغرفةِ طالبٌ', i: 'في الغرفة: جار ومجرور متعلقان بمحذوف في محل رفع خبر مقدم. طالب: مبتدأ مؤخر مرفوع بالضمة.' }
+    ] }
+  ],
+  quiz: [
+    { t: 'mcq', q: 'في «الطالبتانِ مجتهدتانِ»: ما إعراب «مجتهدتانِ»؟', o: ['خبر مرفوع وعلامة رفعه الضمة', 'خبر مرفوع وعلامة رفعه الألف لأنه مثنى', 'نعت منصوب', 'مبتدأ مؤخر'], a: 1, w: 'هو خبر للمبتدأ، وهو مثنى فيُرفع بالألف.' },
+    { t: 'tf', q: 'لا يجوز أن يكون المبتدأ نكرة بأي حال.', a: false, w: 'يجوز إذا أفادت، كتقدم الخبر شبه الجملة: «في الدار رجلٌ».' },
+    { t: 'mcq', q: 'في «في الدار رجلٌ»: ما إعراب «رجلٌ»؟', o: ['فاعل', 'مبتدأ مؤخر', 'خبر مقدم', 'مفعول به'], a: 1, w: 'شبه الجملة «في الدار» خبر مقدم، و«رجل» مبتدأ مؤخر.' },
+    { t: 'fill', q: '«الكتبُ مفيدةٌ»: الخبر مؤنث لأن جمع غير العاقل يعامل معاملة المفردة ____.', a: 'المؤنثة', alts: ['مؤنثة'], w: 'جمع ما لا يعقل يُعامل معاملة المفردة المؤنثة.' },
+    { t: 'tf', q: 'في «محمدٌ أبوه كريمٌ» الرابط في جملة الخبر هو الضمير في «أبوه».', a: true, w: 'الهاء تعود على المبتدأ «محمد».' }
+  ] },
+
+{ id: 'kana', sec: 'nahw', title: 'كان وأخواتها',
+  sum: 'أفعال ناقصة تدخل على الجملة الاسمية فترفع المبتدأ اسمًا لها وتنصب الخبر خبرًا لها.',
+  blocks: [
+    { t: 'p', x: 'تدخل «كان» وأخواتها على المبتدأ والخبر فتُغيّر إعرابهما: يبقى المبتدأ مرفوعًا ويُسمى <b>اسمها</b>، ويُنصب الخبر ويُسمى <b>خبرها</b>.' },
+    { t: 'table', head: ['الفعل', 'معناه', 'مثال'], rows: [
+      ['كان', 'اتصاف الاسم بالخبر في الماضي (وقد تأتي لغيره)', 'كان الجوُّ باردًا'],
+      ['أصبح، أضحى، أمسى', 'الاتصاف في الصباح، والضحى، والمساء (وتأتي بمعنى صار)', 'أصبح الطالبُ نشيطًا'],
+      ['ظلّ', 'استمرار الاتصاف نهارًا', 'ظلّ الجوُّ حارًّا'],
+      ['بات', 'الاتصاف ليلًا', 'بات المريضُ هادئًا'],
+      ['صار', 'التحول من حال إلى حال', 'صار الطينُ فخارًا'],
+      ['ليس', 'نفي مضمون الجملة (غالبًا في الحال)', 'ليس الكسولُ ناجحًا'],
+      ['ما زال، ما برح، ما فتئ، ما انفك', 'استمرار الاتصاف', 'ما زال العلمُ نافعًا'],
+      ['ما دام', 'استمرار مدة دوام الشيء، وهي مصدرية ظرفية', 'أحسِنْ ما دمتَ قادرًا']
+    ] },
+    { t: 'rule', title: 'شرط زال وأخواتها', x: 'الأفعال «زال، برح، فتئ، انفك» لا تعمل عمل كان إلا إذا سبقها <b>نفي</b> أو شبهه من نهي أو دعاء: «ما زال العلمُ نافعًا»، «لا تزالوا مجتهدين».' },
+    { t: 'note', x: 'يجوز في خبر كان وأخواتها أن يكون مفردًا أو جملة أو شبه جملة: «كان الطالبُ يقرأُ». ويجوز أن يتقدم الخبر على الاسم إذا لم يمنع مانع: «كان في الدار رجلٌ».' },
+    { t: 'note', x: '«كان» قد تأتي <b>تامة</b> بمعنى وُجد أو حدث، فتكتفي بمرفوعها فاعلًا: «كان حادثٌ أمس».' },
+    { t: 'ex', items: [
+      { s: 'كان الجوُّ جميلًا', i: 'كان: فعل ماضٍ ناقص مبني على الفتح. الجو: اسم كان مرفوع وعلامة رفعه الضمة. جميلًا: خبر كان منصوب وعلامة نصبه الفتحة.' },
+      { s: 'ليس الطالبانِ غائبَيْنِ', i: 'ليس: فعل ماضٍ ناقص جامد مبني على الفتح. الطالبان: اسم ليس مرفوع وعلامة رفعه الألف لأنه مثنى. غائبَيْنِ: خبر ليس منصوب وعلامة نصبه الياء لأنه مثنى.' },
+      { s: 'كان محمدٌ يقرأُ', i: 'محمد: اسم كان مرفوع. يقرأ: فعل مضارع مرفوع بالضمة، والفاعل ضمير مستتر تقديره هو، والجملة الفعلية في محل نصب خبر كان.' },
+      { s: 'سيظلُّ العلمُ نافعًا', i: 'السين: حرف استقبال. يظل: فعل مضارع ناقص مرفوع بالضمة. العلم: اسمها مرفوع. نافعًا: خبرها منصوب بالفتحة.' }
+    ] }
+  ],
+  quiz: [
+    { t: 'mcq', q: 'في «ليس الكسولُ ناجحًا»: ما إعراب «ناجحًا»؟', o: ['خبر ليس منصوب', 'حال', 'خبر مرفوع', 'مفعول به'], a: 0, w: 'خبر «ليس» يُنصب.' },
+    { t: 'tf', q: '«ما زال» تعمل عمل كان دون شرط.', a: false, w: 'يشترط أن يسبقها نفي أو نهي أو دعاء.' },
+    { t: 'mcq', q: 'أي الأفعال التالية يدل على التحول؟', o: ['بات', 'ظلّ', 'صار', 'ليس'], a: 2, w: '«صار» تفيد الانتقال من حال إلى حال.' },
+    { t: 'mcq', q: 'في «أصبح الجوُّ باردًا»: ما إعراب «الجو»؟', o: ['فاعل', 'مبتدأ', 'اسم أصبح مرفوع', 'خبر أصبح'], a: 2, w: 'اسم الناسخ مرفوع، وهو المبتدأ في الأصل.' },
+    { t: 'fill', q: 'يسمى المنصوب بعد كان وأخواتها: ____ كان.', a: 'خبر', alts: ['خبر كان'], w: 'الاسم المرفوع اسمها، والمنصوب خبرها.' }
+  ] },
+
+{ id: 'inna', sec: 'nahw', title: 'إنّ وأخواتها',
+  sum: 'حروف تدخل على الجملة الاسمية فتنصب المبتدأ اسمًا لها وترفع الخبر خبرًا لها.',
+  blocks: [
+    { t: 'p', x: 'عكس «كان»: تنصب «إنّ» وأخواتها المبتدأ ويسمى <b>اسمها</b>، وترفع الخبر ويسمى <b>خبرها</b>. وهي ستة أحرف.' },
+    { t: 'table', head: ['الحرف', 'معناه', 'مثال'], rows: [
+      ['إنّ', 'توكيد النسبة', 'إنّ العلمَ نافعٌ'],
+      ['أنّ', 'توكيد النسبة (وما بعدها يُؤوَّل بمصدر)', 'علمتُ أنّ العلمَ نافعٌ'],
+      ['كأنّ', 'التشبيه', 'كأنّ الطالبَ أسدٌ'],
+      ['لكنّ', 'الاستدراك', 'الطالبُ ذكيٌّ لكنّه كسولٌ'],
+      ['ليت', 'التمني', 'ليتَ الإجازةَ قريبةٌ'],
+      ['لعلّ', 'الترجي والإشفاق', 'لعلَّ الفرجَ قريبٌ']
+    ] },
+    { t: 'rule', title: 'ترتيب الاسم والخبر', x: 'لا يتقدم خبر هذه الحروف على اسمها إلا إذا كان شبه جملة: «إنّ في الدار رجلًا». ولا يتقدم الخبر على الحرف نفسه.' },
+    { t: 'note', x: 'إذا اتصلت «ما» الكافة بهذه الحروف («إنما، كأنما، لعلما») كفّتها عن العمل، فتدخل على الجملة الاسمية والفعلية: «إنما العلمُ نافعٌ».' },
+    { t: 'h', x: 'كسر همزة «إنّ» وفتحها' },
+    { t: 'table', head: ['تُكسر', 'تُفتح'], rows: [
+      ['في ابتداء الكلام: إنّ اللهَ غفورٌ', 'إذا أمكن تأويلها مع ما بعدها بمصدر'],
+      ['بعد القول: قال إنّي مجتهدٌ', 'إذا وقعت فاعلًا: بلغني أنك ناجحٌ'],
+      ['في ابتداء جملة الصلة: جاء الذي إنه كريمٌ', 'أو مفعولًا به: علمتُ أنك مجتهدٌ'],
+      ['', 'أو مجرورة بحرف: عجبتُ من أنك غائبٌ']
+    ] },
+    { t: 'ex', items: [
+      { s: 'إنّ العلمَ نافعٌ', i: 'إنّ: حرف توكيد ونصب مبني على الفتح. العلم: اسم إنّ منصوب وعلامة نصبه الفتحة. نافع: خبر إنّ مرفوع بالضمة.' },
+      { s: 'إنّ المعلمينَ مخلصونَ', i: 'المعلمين: اسم إنّ منصوب وعلامة نصبه الياء لأنه جمع مذكر سالم. مخلصون: خبر إنّ مرفوع وعلامة رفعه الواو.' },
+      { s: 'إنّ في الحديقةِ طفلًا', i: 'في الحديقة: جار ومجرور متعلقان بمحذوف في محل رفع خبر إنّ مقدم. طفلًا: اسم إنّ مؤخر منصوب بالفتحة.' },
+      { s: 'ليتَ الطالبَ ناجحٌ', i: 'ليت: حرف تمنٍّ ونصب. الطالب: اسم ليت منصوب بالفتحة. ناجح: خبر ليت مرفوع بالضمة.' }
+    ] }
+  ],
+  quiz: [
+    { t: 'mcq', q: 'أي الحروف التالية يفيد التشبيه؟', o: ['لكنّ', 'كأنّ', 'ليت', 'لعلّ'], a: 1, w: '«كأنّ» للتشبيه، نحو «كأنّ الطالبَ أسدٌ».' },
+    { t: 'tf', q: '«ليت» تفيد الاستدراك.', a: false, w: '«ليت» للتمني، والاستدراك لـ«لكنّ».' },
+    { t: 'mcq', q: 'في «إنّ الطلابَ مجتهدونَ»: ما إعراب «الطلابَ»؟', o: ['اسم إنّ منصوب', 'مبتدأ مرفوع', 'خبر إنّ', 'فاعل'], a: 0, w: 'تنصب «إنّ» المبتدأ ويسمى اسمها.' },
+    { t: 'mcq', q: 'في «إنّ في الدار رجلًا»: ما إعراب «رجلًا»؟', o: ['خبر إنّ', 'اسم إنّ مؤخر منصوب', 'حال', 'مفعول به'], a: 1, w: 'شبه الجملة خبر مقدم، و«رجلًا» اسم إنّ مؤخر.' },
+    { t: 'fill', q: 'تُكسر همزة «إنّ» إذا وقعت في ____ الكلام.', a: 'ابتداء', alts: ['بداية', 'أول'], w: 'تكسر في ابتداء الكلام وبعد القول.' },
+    { t: 'tf', q: 'تُفتح همزة «أنّ» إذا أمكن تأويلها مع معموليها بمصدر.', a: true, w: 'نحو: يسرني أنك ناجح، أي: نجاحُك.' }
+  ] },
+
+{ id: 'fail', sec: 'nahw', title: 'الفاعل ونائب الفاعل',
+  sum: 'الفاعل من قام بالفعل، ونائب الفاعل يحل محله إذا حُذف وبُني الفعل للمجهول.',
+  blocks: [
+    { t: 'p', x: '<b>الفاعل</b> اسم مرفوع يدل على من فعل الفعل أو اتصف به، ويأتي بعد فعل مبني للمعلوم.' },
+    { t: 'h', x: 'صور الفاعل' },
+    { t: 'list', items: [
+      '<b>اسم ظاهر</b>: «كتبَ الطالبُ».',
+      '<b>ضمير متصل</b>: «كتبتُ»، «كتبوا».',
+      '<b>ضمير مستتر</b>: «الطالبُ يكتبُ» (تقديره هو).',
+      '<b>مصدر مؤول</b>: «يسرّني أن تنجحَ» أي: نجاحُك.'
+    ] },
+    { t: 'rule', title: 'الفعل يبقى مفردًا', x: 'إذا كان الفاعل اسمًا ظاهرًا مثنى أو جمعًا بقي الفعل مفردًا: «حضرَ الطالبانِ»، «حضرَ الطلابُ». أما «قاما» و«قاموا» فبضمير الفاعل لا بالاسم الظاهر.' },
+    { t: 'rule', title: 'تاء التأنيث مع الفاعل', x: 'تجب إذا كان الفاعل مؤنثًا حقيقيًا متصلًا بفعله: «حضرتِ الطالبةُ». ويجوز التذكير والتأنيث إذا كان الفاعل مؤنثًا مجازيًا أو فُصل بينه وبين فعله: «طلعتِ الشمسُ» و«طلعَ الشمسُ»، «حضرَ اليومَ الطالبةُ».' },
+    { t: 'h', x: 'نائب الفاعل' },
+    { t: 'p', x: 'إذا حُذف الفاعل لغرض (العلم به، أو الجهل به، أو الإيجاز، أو الخوف عليه…) بُني الفعل للمجهول وأُنيب المفعول به مكانه فصار مرفوعًا.' },
+    { t: 'table', head: ['', 'المبني للمعلوم', 'المبني للمجهول', 'التغيير'], rows: [
+      ['الماضي', 'كَتَبَ الطالبُ الدرسَ', 'كُتِبَ الدرسُ', 'ضم الأول وكسر ما قبل الآخر'],
+      ['المضارع', 'يَكتُبُ الطالبُ الدرسَ', 'يُكتَبُ الدرسُ', 'ضم الأول وفتح ما قبل الآخر'],
+      ['الأجوف', 'قالَ', 'قِيلَ', 'تقلب الألف ياء مع كسر الأول']
+    ] },
+    { t: 'ex', items: [
+      { s: 'كتبَ الطالبُ الدرسَ', i: 'كتب: فعل ماضٍ مبني على الفتح. الطالب: فاعل مرفوع بالضمة. الدرس: مفعول به منصوب بالفتحة.' },
+      { s: 'كُتِبَ الدرسُ', i: 'كُتب: فعل ماضٍ مبني للمجهول مبني على الفتح. الدرس: نائب فاعل مرفوع بالضمة.' },
+      { s: 'يُحترمُ المعلمونَ', i: 'يحترم: فعل مضارع مبني للمجهول مرفوع بالضمة. المعلمون: نائب فاعل مرفوع وعلامة رفعه الواو لأنه جمع مذكر سالم.' },
+      { s: 'نجحتِ الطالبتانِ', i: 'نجحت: فعل ماضٍ مبني على الفتح، والتاء تاء التأنيث الساكنة لا محل لها (كُسرت لالتقاء الساكنين). الطالبتان: فاعل مرفوع وعلامة رفعه الألف لأنه مثنى.' }
+    ] }
+  ],
+  quiz: [
+    { t: 'mcq', q: 'ما الفاعل في «فهمَ الطالبانِ الدرسَ»؟', o: ['فهم', 'الطالبان', 'الدرس'], a: 1, w: 'هو من قام بالفعل، وهو مرفوع بالألف لأنه مثنى.' },
+    { t: 'mcq', q: 'ما صيغة المبني للمجهول من «يفتحُ»؟', o: ['يُفتَحُ', 'يَفتِحُ', 'يُفتِحُ'], a: 0, w: 'يُضم أول المضارع ويُفتح ما قبل آخره.' },
+    { t: 'tf', q: 'يُثنّى الفعل إذا كان فاعله اسمًا ظاهرًا مثنى.', a: false, w: 'الفعل يبقى مفردًا مع الفاعل الظاهر: «حضرَ الطالبانِ».' },
+    { t: 'mcq', q: 'في «شُرِحَ الدرسُ»: ما إعراب «الدرسُ»؟', o: ['فاعل', 'نائب فاعل', 'مفعول به', 'مبتدأ'], a: 1, w: 'الفعل مبني للمجهول، فالمرفوع بعده نائب فاعل.' },
+    { t: 'fill', q: 'يُضم أول الماضي المبني للمجهول ويُكسر ما قبل ____.', a: 'آخره', alts: ['الآخر', 'آخر'], w: 'كَتَبَ ← كُتِبَ.' }
+  ] }
+
+);
+
+</script>
+<script>
+/* بَيَان — قسم الصرف */
+BAYAN.topics.push(
+
+{ id: 'mizan', sec: 'sarf', title: 'الميزان الصرفي',
+  sum: 'مقياس نزن به الكلمة لمعرفة حروفها الأصلية والزائدة وحركاتها وسكناتها، ورمزه (ف ع ل).',
+  blocks: [
+    { t: 'p', x: 'الميزان الصرفي مقياس تُعرف به أحوال بنية الكلمة: عدد حروفها، وأصليها وزائدها، وحركاتها وسكناتها. ورمز الميزان الأصلي ثلاثة أحرف: <b>الفاء</b> والعين واللام، تقابل الحرف الأول والثاني والثالث من أصول الكلمة.' },
+    { t: 'rule', title: 'قواعد الوزن', x: '<b>1)</b> الحرف الأصلي يقابله حرف من (ف ع ل) بحسب موضعه. <b>2)</b> الحرف الزائد يبقى على لفظه في الوزن. <b>3)</b> إذا كانت الأصول أربعة زِيدت لام ثانية: «دحرج» على وزن «فعلل». <b>4)</b> الحرف المضعَّف بزيادة يُكرَّر ما يقابله: «علّم» على وزن «فعّل». <b>5)</b> تُراعى الحركات والسكنات في الميزان.' },
+    { t: 'table', head: ['الكلمة', 'الوزن', 'توضيح'], rows: [
+      ['كَتَبَ', 'فَعَلَ', 'ثلاثي مجرد'],
+      ['عَلِمَ', 'فَعِلَ', 'العين مكسورة'],
+      ['كَرُمَ', 'فَعُلَ', 'العين مضمومة'],
+      ['كاتِب', 'فاعِل', 'الألف زائدة فبقيت في الوزن'],
+      ['مَكتوب', 'مَفعول', 'الميم والواو زائدتان'],
+      ['أَكرَمَ', 'أَفعَلَ', 'الهمزة زائدة'],
+      ['عَلَّمَ', 'فَعَّلَ', 'تكرر ما يقابل العين لأن التضعيف زائد'],
+      ['استَخرَجَ', 'استَفعَلَ', 'ثلاثة أحرف زائدة هي الهمزة والسين والتاء'],
+      ['دَحرَجَ', 'فَعلَلَ', 'رباعي: أصوله أربعة'],
+      ['مِفتاح', 'مِفعال', 'الميم والألف زائدتان']
+    ] },
+    { t: 'h', x: 'الحذف في الميزان' },
+    { t: 'p', x: 'إذا حُذف حرف أصلي من الكلمة حُذف ما يقابله في الميزان: «قِ» (فعل أمر من وقى) على وزن «عِ»، و«قُلْ» على وزن «فُلْ». وقد وُزن «قال» بـ«فَعَلَ» باعتبار أصله «قَوَلَ».' },
+    { t: 'h', x: 'حروف الزيادة' },
+    { t: 'p', x: 'حروف الزيادة عشرة يجمعها قولك: <b>سألتمونيها</b>. ولا يعني وجود حرف منها في الكلمة أنه زائد دائمًا، فالسين في «سَمِعَ» أصلية.' }
+  ],
+  quiz: [
+    { t: 'mcq', q: 'ما وزن «استغفر»؟', o: ['فعلل', 'استفعل', 'افتعل', 'أفعل'], a: 1, w: 'الهمزة والسين والتاء زوائد تبقى في الوزن، والأصول غ ف ر تقابل ف ع ل.' },
+    { t: 'mcq', q: 'ما وزن «مكتوب»؟', o: ['فاعل', 'مفعول', 'مفعال', 'فعول'], a: 1, w: 'الميم والواو زائدتان، فتبقيان في الوزن.' },
+    { t: 'tf', q: 'الحروف الزائدة تبقى على لفظها في الميزان الصرفي.', a: true, w: 'فنقول في «كاتب»: فاعل.' },
+    { t: 'mcq', q: 'ما وزن «دحرج»؟', o: ['فعّل', 'فعلل', 'فاعل', 'فعلى'], a: 1, w: 'أصوله أربعة، فتُزاد لام ثانية في الميزان.' },
+    { t: 'fill', q: 'حروف الزيادة العشرة تجمعها كلمة «____».', a: 'سألتمونيها', alts: [], w: 'س أ ل ت م و ن ي ه ا.' },
+    { t: 'mcq', q: 'ما وزن «علّم»؟', o: ['فعل', 'فعّل', 'فاعل', 'أفعل'], a: 1, w: 'العين مضعفة بزيادة فتُكرر ما يقابلها: فعّل.' }
+  ] },
+
+{ id: 'mutal', sec: 'sarf', title: 'الفعل الصحيح والمعتل',
+  sum: 'يُقسم الفعل بحسب حروفه الأصلية إلى صحيح ومعتل، ولكل منهما أنواع.',
+  blocks: [
+    { t: 'p', x: 'يُنظر إلى الحروف <b>الأصلية</b> للفعل. فإن خلت من حروف العلة (الألف والواو والياء) فهو <b>صحيح</b>، وإن كان فيها حرف علة فهو <b>معتل</b>. والهمزة حرف صحيح.' },
+    { t: 'table', head: ['النوع', 'تعريفه', 'أمثلة'], rows: [
+      ['السالم', 'خلت أصوله من الهمزة والتضعيف وحرف العلة', 'كتبَ، شربَ'],
+      ['المهموز', 'أحد أصوله همزة', 'أخذَ (فاؤه)، سألَ (عينه)، قرأَ (لامه)'],
+      ['المضعّف', 'عينه ولامه من جنس واحد في الثلاثي', 'مدَّ، ردَّ (أصلهما مَدَدَ، رَدَدَ)'],
+      ['المثال', 'فاؤه حرف علة', 'وعدَ، يسرَ'],
+      ['الأجوف', 'عينه حرف علة', 'قالَ، باعَ، نامَ'],
+      ['الناقص', 'لامه حرف علة', 'دعا، رمى، سعى'],
+      ['اللفيف المفروق', 'فاؤه ولامه حرفا علة', 'وقى، وفى'],
+      ['اللفيف المقرون', 'عينه ولامه حرفا علة', 'روى، طوى، شوى']
+    ] },
+    { t: 'h', x: 'كيف نعرف أصل الألف؟' },
+    { t: 'p', x: 'نردّ الفعل إلى صيغة تظهر فيها الأصول، كإسناده إلى تاء الفاعل أو النظر في مضارعه:' },
+    { t: 'ex', items: [
+      { s: 'قالَ ← قلتُ', i: 'ظهرت الواو في «قلتُ» (قُلْتُ)، فأصل ألف «قال» واو، وهو أجوف واوي.' },
+      { s: 'باعَ ← بعتُ', i: 'ظهرت الياء في «بعتُ» (بِعْتُ)، فأصل الألف ياء، وهو أجوف يائي.' },
+      { s: 'دعا ← دعوتُ', i: 'ظهرت الواو، فهو ناقص واوي.' },
+      { s: 'رمى ← رميتُ', i: 'ظهرت الياء، فهو ناقص يائي.' }
+    ] },
+    { t: 'note', x: 'المهموز والمضعّف <b>ليسا معتلين</b>، بل هما من الصحيح؛ لأن الهمزة والحرف المكرر ليسا من حروف العلة.' }
+  ],
+  quiz: [
+    { t: 'mcq', q: 'الفعل «وعدَ» من نوع:', o: ['أجوف', 'ناقص', 'مثال', 'مهموز'], a: 2, w: 'فاؤه حرف علة (الواو).' },
+    { t: 'mcq', q: 'الفعل «قالَ» من نوع:', o: ['مثال', 'أجوف', 'ناقص', 'مضعف'], a: 1, w: 'عينه حرف علة: قَوَلَ.' },
+    { t: 'mcq', q: 'الفعل «رمى» من نوع:', o: ['ناقص', 'أجوف', 'مثال', 'لفيف مقرون'], a: 0, w: 'لامه حرف علة: رَمَيَ.' },
+    { t: 'tf', q: 'الفعل «أخذَ» معتل لأن فيه همزة.', a: false, w: 'الهمزة حرف صحيح، فهو مهموز لا معتل.' },
+    { t: 'mcq', q: 'الفعل «وقى» من نوع:', o: ['لفيف مفروق', 'لفيف مقرون', 'أجوف', 'مثال'], a: 0, w: 'فاؤه (الواو) ولامه (الياء) حرفا علة بينهما حرف صحيح.' },
+    { t: 'fill', q: 'أصل ألف «دعا» هو ____.', a: 'الواو', alts: ['واو'], w: 'ظهرت الواو في «دعوتُ».' }
+  ] },
+
+{ id: 'mazid', sec: 'sarf', title: 'الفعل المزيد ومصادره',
+  sum: 'يُزاد على الفعل الثلاثي حرف أو أكثر فتتولد أوزان لها معانٍ ومصادر معروفة.',
+  blocks: [
+    { t: 'p', x: 'الفعل الثلاثي المجرد قد يُزاد عليه حرف أو حرفان أو ثلاثة، فتنشأ أوزان جديدة تُفيد معاني مختلفة.' },
+    { t: 'table', head: ['الوزن', 'مثال', 'مصدره', 'من معانيه'], rows: [
+      ['أَفْعَلَ', 'أكرمَ', 'إكرام', 'التعدية (خرجَ ← أخرجَ)'],
+      ['فَعَّلَ', 'علَّمَ', 'تعليم', 'التكثير والتعدية (كسَّرَ، فرَّحَ)'],
+      ['فاعَلَ', 'قاتلَ', 'قتال، مقاتلة', 'المشاركة (ضارب، شارك)'],
+      ['انْفَعَلَ', 'انكسرَ', 'انكسار', 'المطاوعة (كسرتُه فانكسرَ)'],
+      ['افْتَعَلَ', 'اجتمعَ', 'اجتماع', 'المطاوعة (جمعتُه فاجتمعَ)'],
+      ['تَفَعَّلَ', 'تعلَّمَ', 'تعلُّم', 'المطاوعة لفعّل (علّمتُه فتعلّمَ)'],
+      ['تَفاعَلَ', 'تقاتلَ', 'تقاتُل', 'المشاركة بين اثنين فأكثر'],
+      ['اسْتَفْعَلَ', 'استخرجَ', 'استخراج', 'الطلب (استغفرَ: طلب المغفرة)'],
+      ['افْعَلَّ', 'احمرَّ', 'احمرار', 'الألوان والعيوب']
+    ] },
+    { t: 'h', x: 'قواعد المصادر' },
+    { t: 'list', items: [
+      'مصدر <b>أفعل</b> على وزن <b>إفعال</b>: أكرم ← إكرام.',
+      'مصدر <b>فعّل</b> غالبًا على <b>تفعيل</b>: علّم ← تعليم.',
+      'مصدر الماضي <b>الخماسي والسداسي</b> (انفعل، افتعل، استفعل): يُكسر ثالثه وتُزاد ألف قبل آخره: انكسار، اجتماع، استخراج.',
+      'مصدر ما بُدئ بتاء زائدة (تفعّل، تفاعل): يُضم ما قبل الآخر: تعلُّم، تقاتُل.'
+    ] },
+    { t: 'note', x: 'المعاني المذكورة ليست مطّردة في كل فعل؛ فالوزن الواحد قد يفيد أكثر من معنى بحسب الفعل، وتُعرف دلالته بالاستعمال والمعجم.' }
+  ],
+  quiz: [
+    { t: 'mcq', q: 'ما مصدر «استخرجَ»؟', o: ['استخراج', 'تخريج', 'إخراج', 'خروج'], a: 0, w: 'تكسر الثالثة وتزاد ألف قبل الآخر في الماضي السداسي.' },
+    { t: 'mcq', q: 'ما وزن «انكسرَ»؟', o: ['افتعل', 'انفعل', 'تفعّل', 'استفعل'], a: 1, w: 'انفعل، ويفيد المطاوعة غالبًا.' },
+    { t: 'mcq', q: 'أي الأوزان يفيد الطلب غالبًا؟', o: ['فاعل', 'تفاعل', 'استفعل', 'أفعل'], a: 2, w: 'مثل: استغفرَ أي طلب المغفرة.' },
+    { t: 'tf', q: 'مصدر «أكرمَ» هو «تكريم».', a: false, w: 'مصدر أكرم: إكرام، أما «تكريم» فمصدر «كرّم».' },
+    { t: 'mcq', q: 'ما مصدر «تقاتلَ»؟', o: ['تقاتُل', 'قتال', 'تقتيل', 'استقتال'], a: 0, w: 'يُضم ما قبل الآخر في مصدر ما بدئ بتاء زائدة.' },
+    { t: 'mcq', q: 'الفعل «قاتلَ» يفيد غالبًا:', o: ['المطاوعة', 'المشاركة', 'الطلب', 'التحول'], a: 1, w: 'وزن فاعل يفيد المشاركة.' }
+  ] },
+
+{ id: 'mushtaq', sec: 'sarf', title: 'المشتقات',
+  sum: 'اسم الفاعل واسم المفعول والصفة المشبهة وصيغ المبالغة واسم التفضيل واسما الزمان والمكان واسم الآلة.',
+  blocks: [
+    { t: 'p', x: 'المشتقات أسماء تُؤخذ من المصدر أو الفعل لتدل على الحدث وعلى صاحبه أو زمانه أو مكانه أو أداته.' },
+    { t: 'table', head: ['المشتق', 'صياغته', 'أمثلة'], rows: [
+      ['اسم الفاعل', 'من الثلاثي على «فاعل». ومن غيره: مضارعه مع إبدال حرف المضارعة ميمًا مضمومة وكسر ما قبل الآخر', 'كاتب، قارئ، مُكرِم، مُستخرِج'],
+      ['اسم المفعول', 'من الثلاثي على «مفعول». ومن غيره: ميم مضمومة وفتح ما قبل الآخر', 'مكتوب، مفهوم، مُكرَم، مُستخرَج'],
+      ['صيغ المبالغة', 'تحوّل اسم الفاعل لإفادة الكثرة', 'فعّال: غفّار. فعول: شكور. مفعال: معطاء. فعيل: رحيم. فَعِل: حَذِر'],
+      ['الصفة المشبهة', 'تدل على صفة ثابتة في صاحبها', 'كريم، جميل، أحمر، عطشان'],
+      ['اسم التفضيل', 'على «أفعل» للمذكر و«فُعلى» للمؤنث', 'أكبر / كبرى، أفضل / فضلى'],
+      ['اسما الزمان والمكان', 'من الثلاثي على «مَفعَل» أو «مَفعِل»', 'مَكتَب، مَذهَب، مَجلِس، مَوعِد'],
+      ['اسم الآلة', 'على «مِفعَل» و«مِفعال» و«مِفعَلة»', 'مِبرَد، مِفتاح، مِكنَسة']
+    ] },
+    { t: 'h', x: 'تفصيلات مهمة' },
+    { t: 'rule', title: 'اسم الزمان والمكان', x: 'يُصاغ على <b>مَفعَل</b> (بفتح العين) إذا كان مضارع الفعل مفتوح العين أو مضمومها: يكتُب ← مَكتَب، يذهَب ← مَذهَب. ويُصاغ على <b>مَفعِل</b> (بكسر العين) إذا كان مضارعه مكسور العين أو كان معتل الفاء (مثالًا): يجلِس ← مَجلِس، يعِد ← مَوعِد. وشذّت ألفاظ مثل: مسجِد، مطلِع، مشرِق، مغرِب.' },
+    { t: 'rule', title: 'اسم التفضيل', x: 'يُصاغ من الفعل الثلاثي التام المثبت المبني للمعلوم القابل للتفاضل، ولا يكون الوصف منه على «أفعل» للألوان والعيوب. فإن لم تتوافر الشروط يُتوصل إليه بـ«أشدّ» أو «أكثر» ثم يُؤتى بالمصدر: «أشدّ حمرةً».' },
+    { t: 'note', x: 'يُفرَّق بين اسم الفاعل والصفة المشبهة بأن الثانية تدل على الثبوت غالبًا والأول على الحدوث، نحو «فَرِح» (صفة مشبهة) و«فارح» (اسم فاعل).' },
+    { t: 'ex', items: [
+      { s: 'جذر (ع ل م)', i: 'عالِم (اسم فاعل)، معلوم (اسم مفعول)، عليم وعلّام (مبالغة)، أعلم (تفضيل)، مَعلَم (اسم مكان).' },
+      { s: 'جذر (ف ت ح)', i: 'فاتح (اسم فاعل)، مفتوح (اسم مفعول)، مِفتاح (اسم آلة).' }
+    ] }
+  ],
+  quiz: [
+    { t: 'mcq', q: 'ما اسم الفاعل من «استخرجَ»؟', o: ['مستخرِج', 'مستخرَج', 'استخراج', 'خارج'], a: 0, w: 'ميم مضمومة مع كسر ما قبل الآخر.' },
+    { t: 'mcq', q: 'ما اسم المفعول من «أكرمَ»؟', o: ['مُكرِم', 'مُكرَم', 'كريم', 'إكرام'], a: 1, w: 'ميم مضمومة وفتح ما قبل الآخر.' },
+    { t: 'mcq', q: 'ما اسم المكان من «جلسَ يجلِسُ»؟', o: ['مَجلَس', 'مَجلِس', 'جالس', 'مُجلَس'], a: 1, w: 'مضارعه مكسور العين فاسم المكان على مَفعِل.' },
+    { t: 'mcq', q: 'أي الكلمات التالية اسم آلة؟', o: ['مكتب', 'مِفتاح', 'مفتوح', 'فاتح'], a: 1, w: '«مِفتاح» على وزن «مِفعال».' },
+    { t: 'mcq', q: 'أي الكلمات صيغة مبالغة؟', o: ['غفّار', 'مغفور', 'غافر', 'أغفر'], a: 0, w: 'على وزن «فعّال».' },
+    { t: 'tf', q: 'تُصاغ صفة التفضيل من «حمر» مباشرة فنقول «أحمر منه».', a: false, w: 'الألوان تأتي صفةً مشبهة على «أفعل»، ويُتوصل للتفضيل بـ«أشد حمرةً».' },
+    { t: 'mcq', q: 'ما مؤنث «أكبر» اسم تفضيل؟', o: ['كبيرة', 'كبرى', 'كابرة', 'مكبّرة'], a: 1, w: 'مؤنث أفعل التفضيل: فُعلى.' }
+  ] }
+
+);
+
+</script>
+<script>
+/* بَيَان — قسم الإملاء */
+BAYAN.topics.push(
+
+{ id: 'wasl', sec: 'imla', title: 'همزتا الوصل والقطع',
+  sum: 'همزة القطع تُنطق دائمًا وتُكتب (أ، إ)، وهمزة الوصل تسقط في الدرج وتُكتب ألفًا مجردة (ا).',
+  blocks: [
+    { t: 'p', x: '<b>همزة القطع</b> تُنطق في ابتداء الكلام ووسطه، وتُكتب ألفًا عليها همزة: (أ) أو (إ). و<b>همزة الوصل</b> تُنطق عند الابتداء بها فقط وتسقط في وصل الكلام، وتُكتب ألفًا مجردة (ا).' },
+    { t: 'h', x: 'مواضع همزة الوصل' },
+    { t: 'table', head: ['الموضع', 'أمثلة'], rows: [
+      ['أمر الفعل الثلاثي', 'اكتبْ، اذهبْ، اسمعْ'],
+      ['ماضي الخماسي والسداسي وأمرهما ومصدرهما', 'انطلقَ، انطلِقْ، انطلاق / استخرجَ، استخرِجْ، استخراج'],
+      ['«أل» التعريف', 'الكتاب، القمر'],
+      ['أسماء مخصوصة', 'اسم، ابن، ابنة، امرؤ، امرأة، اثنان، اثنتان']
+    ] },
+    { t: 'note', x: 'تُذكر في كتب النحو والصرف أسماء أخرى ترد بهمزة وصل، وما سبق هو الشائع في الكتابة.' },
+    { t: 'h', x: 'مواضع همزة القطع' },
+    { t: 'table', head: ['الموضع', 'أمثلة'], rows: [
+      ['ماضي الفعل الرباعي وأمره ومصدره', 'أكرمَ، أكرِمْ، إكرام'],
+      ['المضارع المبدوء بهمزة المتكلم', 'أكتبُ، أذهبُ'],
+      ['الأسماء التي ليست من أسماء الوصل', 'أحمد، إبراهيم، أب، أخ، أم'],
+      ['الضمائر والحروف', 'أنا، أنتَ، أنّ، إنّ، أو، أم، إلى، إذا']
+    ] },
+    { t: 'rule', title: 'اختبار النطق', x: 'قبل الكلمة بحرف عطف مثل الواو أو الفاء: فإن سقطت الهمزة عند النطق فهي همزة وصل. فنقول «واكتبْ» (تسقط الهمزة) و«وأكرمَ» (تثبت الهمزة).' },
+    { t: 'note', x: 'تُحذف ألف «ابن» كتابةً إذا وقعت بين علمين، وكانت صفة للأول ولم يُفصل بينهما: «قال محمدُ بنُ علي». وتثبت في أول السطر: «ابن سينا».' }
+  ],
+  quiz: [
+    { t: 'mcq', q: 'همزة «استخرجَ» همزة:', o: ['وصل', 'قطع'], a: 0, w: 'ماضي سداسي، همزته وصل.' },
+    { t: 'mcq', q: 'همزة «أكرمَ» همزة:', o: ['وصل', 'قطع'], a: 1, w: 'ماضي رباعي، همزته قطع.' },
+    { t: 'mcq', q: 'أي الكلمات همزتها همزة وصل؟', o: ['أحمد', 'امرأة', 'إبراهيم', 'أمل'], a: 1, w: 'امرأة من الأسماء التي تُكتب بهمزة وصل.' },
+    { t: 'tf', q: 'همزة «أل» التعريف همزة وصل.', a: true, w: 'تسقط في الدرج: «قرأتُ الكتابَ».' },
+    { t: 'mcq', q: 'ما الكتابة الصحيحة؟', o: ['انطلاق', 'إنطلاق', 'أنطلاق'], a: 0, w: 'مصدر خماسي، وهمزته همزة وصل: انطلاق.' },
+    { t: 'tf', q: 'همزة ماضي الفعل الرباعي همزة وصل.', a: false, w: 'همزته همزة قطع: أكرمَ.' }
+  ] },
+
+{ id: 'hamza-mutawassita', sec: 'imla', title: 'الهمزة المتوسطة',
+  sum: 'تُكتب الهمزة المتوسطة بحسب أقوى الحركتين: حركتها وحركة الحرف الذي قبلها (أو سكونه).',
+  blocks: [
+    { t: 'p', x: 'لرسم الهمزة في وسط الكلمة قاعدة عامة: تُقارَن حركة الهمزة بحركة الحرف السابق لها، وتُرسم على الحرف المناسب للحركة <b>الأقوى</b>. وترتيب القوة:' },
+    { t: 'list', items: [
+      '<b>الكسرة</b> (الأقوى) ← تُرسم على نبرة (ئ).',
+      '<b>الضمة</b> ← تُرسم على واو (ؤ).',
+      '<b>الفتحة</b> ← تُرسم على ألف (أ).',
+      '<b>السكون</b> (الأضعف) ← لا يؤثر إذا كان الآخر متحركًا.'
+    ] },
+    { t: 'table', head: ['الحالة', 'ترسم على', 'مثال'], rows: [
+      ['مفتوحة بعد فتحة', 'ألف (أ)', 'سَأَلَ، مَلَأَ'],
+      ['مفتوحة بعد سكون صحيح', 'ألف (أ)', 'مَسْأَلة، يَسْأَلُ'],
+      ['ساكنة بعد فتحة', 'ألف (أ)', 'رَأْس، فَأْس'],
+      ['مضمومة بعد فتحة', 'واو (ؤ)', 'رَؤُوف'],
+      ['مضمومة بعد ضمة', 'واو (ؤ)', 'رُؤُوس'],
+      ['مفتوحة بعد ضمة', 'واو (ؤ)', 'سُؤَال، مُؤَذِّن'],
+      ['ساكنة بعد ضمة', 'واو (ؤ)', 'مُؤْمِن، لُؤْم'],
+      ['مضمومة بعد سكون', 'واو (ؤ)', 'مَسْؤُول'],
+      ['مكسورة (بعد أي حركة)', 'نبرة (ئ)', 'سُئِلَ، سَئِمَ، رَئِيس'],
+      ['ساكنة بعد كسرة', 'نبرة (ئ)', 'بِئْر، ذِئْب'],
+      ['مفتوحة بعد كسرة', 'نبرة (ئ)', 'مِئَة، فِئَة'],
+      ['مفتوحة بعد ياء ساكنة', 'نبرة (ئ)', 'هَيْئَة، بِيئَة']
+    ] },
+    { t: 'h', x: 'حالات خاصة' },
+    { t: 'table', head: ['الحالة', 'ترسم على', 'مثال'], rows: [
+      ['مفتوحة بعد ألف مد', 'السطر (ء)', 'قِرَاءَة، بَرَاءَة'],
+      ['مفتوحة بعد واو ساكنة', 'السطر (ء)', 'مُرُوءَة'],
+      ['مضمومة بعد ألف مد', 'واو (ؤ)', 'تَفَاؤُل، تَسَاؤُل'],
+      ['مكسورة بعد ألف مد', 'نبرة (ئ)', 'قَائِل، سَائِل']
+    ] },
+    { t: 'note', x: 'تُكتب «مسؤول» وفق القاعدة السابقة (همزة مضمومة بعد ساكن)، وقد تُرى «مسئول» في بعض الكتابات القديمة. والقاعدة المذكورة هي الأصل في هذا الشرح.' },
+    { t: 'ex', items: [
+      { s: 'سُئِلَ', i: 'الهمزة مكسورة وما قبلها مضموم، والكسرة أقوى، فتُكتب على نبرة.' },
+      { s: 'مُؤْمِن', i: 'الهمزة ساكنة وما قبلها مضموم، فالضمة هي الأقوى، فتُكتب على واو.' },
+      { s: 'مَسْأَلة', i: 'الهمزة مفتوحة وما قبلها ساكن، فتُكتب على ألف.' },
+      { s: 'قِرَاءَة', i: 'الهمزة مفتوحة وقبلها ألف مد، فتُكتب على السطر لئلا تتتابع ألفان.' }
+    ] }
+  ],
+  quiz: [
+    { t: 'mcq', q: 'ما الكتابة الصحيحة؟', o: ['سؤال', 'سأال', 'سئال'], a: 0, w: 'الهمزة مفتوحة بعد ضمة، والضمة أقوى فتُكتب على واو.' },
+    { t: 'mcq', q: 'ما الكتابة الصحيحة؟', o: ['مأة', 'مئة', 'مؤة'], a: 1, w: 'الهمزة مفتوحة بعد كسرة، والكسرة أقوى فتُكتب على نبرة.' },
+    { t: 'mcq', q: 'الهمزة في «رأس» تُكتب على:', o: ['ألف', 'واو', 'نبرة', 'السطر'], a: 0, w: 'ساكنة بعد فتحة.' },
+    { t: 'mcq', q: 'الهمزة في «بيئة» تُكتب على:', o: ['ألف', 'واو', 'نبرة', 'السطر'], a: 2, w: 'مفتوحة بعد ياء ساكنة، فتُكتب على نبرة.' },
+    { t: 'mcq', q: 'ما الكتابة الصحيحة؟', o: ['تفائل', 'تفاؤل', 'تفأل'], a: 1, w: 'الهمزة مضمومة بعد ألف مد، فتُكتب على واو.' },
+    { t: 'tf', q: 'الكسرة أقوى من الضمة في تحديد رسم الهمزة.', a: true, w: 'الترتيب: كسرة ثم ضمة ثم فتحة ثم سكون.' },
+    { t: 'tf', q: 'الهمزة في «قراءة» تُكتب على ألف.', a: false, w: 'تُكتب على السطر: قراءة.' }
+  ] },
+
+{ id: 'hamza-mutatarrifa', sec: 'imla', title: 'الهمزة المتطرفة',
+  sum: 'تُكتب الهمزة في آخر الكلمة بحسب حركة الحرف الذي قبلها، لا بحسب حركتها هي.',
+  blocks: [
+    { t: 'p', x: 'الهمزة المتطرفة هي التي تقع في آخر الكلمة. ويُنظر في رسمها إلى <b>حركة الحرف السابق لها</b>.' },
+    { t: 'table', head: ['ما قبلها', 'ترسم على', 'أمثلة'], rows: [
+      ['فتحة', 'ألف (أ)', 'قرأَ، بدأَ، مبتدأ، نشأَ'],
+      ['ضمة', 'واو (ؤ)', 'لؤلؤ، تباطؤ، يجرؤ'],
+      ['كسرة', 'نبرة (ئ)', 'شاطئ، قارئ، لاجئ'],
+      ['ساكن (حرف صحيح أو مد)', 'السطر (ء)', 'جزء، شيء، دفء، سماء، هدوء']
+    ] },
+    { t: 'h', x: 'إذا اتصلت بها لاحقة' },
+    { t: 'p', x: 'إذا اتصلت بالكلمة لاحقة (تنوين نصب أو ضمير أو واو الجماعة) صارت الهمزة متوسطة وطُبّقت عليها قاعدة المتوسطة:' },
+    { t: 'table', head: ['الكلمة', 'بعد اللاحقة', 'السبب'], rows: [
+      ['جزء', 'جزءًا', 'مفتوحة بعد ساكن فتبقى على السطر'],
+      ['شيء', 'شيئًا', 'مفتوحة بعد ياء ساكنة فتُكتب على نبرة'],
+      ['بدأ', 'بدؤوا', 'مضمومة بعد فتحة، والضمة أقوى فتُكتب على واو'],
+      ['قرأ', 'قرؤوا', 'مضمومة بعد فتحة، والضمة أقوى فتُكتب على واو'],
+      ['مبتدأ', 'مبتدؤه', 'مضمومة بعد فتحة، والضمة أقوى فتُكتب على واو'],
+      ['شاطئ', 'شاطئًا', 'بقيت على نبرة']
+    ] },
+    { t: 'note', x: 'ألف التنوين تُكتب بعد الهمزة (جزءًا، شيئًا، شاطئًا)، إلا إذا كانت الهمزة على ألف أو سبقها ألف مد فلا تُزاد ألف: «ملجأً»، «سماءً».' }
+  ],
+  quiz: [
+    { t: 'mcq', q: 'الهمزة في «شاطئ» تُكتب على:', o: ['ألف', 'واو', 'نبرة', 'السطر'], a: 2, w: 'ما قبلها مكسور (الطاء).' },
+    { t: 'mcq', q: 'ما الكتابة الصحيحة؟', o: ['لؤلؤ', 'لؤلئ', 'لؤلأ'], a: 0, w: 'ما قبل الهمزة مضموم (اللام الثانية)، فتُكتب على واو.' },
+    { t: 'mcq', q: 'الهمزة في «جزء» تُكتب على:', o: ['ألف', 'واو', 'نبرة', 'السطر'], a: 3, w: 'قبلها حرف ساكن (الزاي).' },
+    { t: 'mcq', q: 'كيف تُكتب «قرأ» عند اتصال واو الجماعة بها؟', o: ['قرأوا', 'قرؤوا', 'قرئوا'], a: 1, w: 'صارت الهمزة مضمومة بعد فتحة، والضمة أقوى فتُكتب على واو.' },
+    { t: 'mcq', q: 'كيف يُكتب «شيء» عند تنوين النصب؟', o: ['شيئًا', 'شيأً', 'شيؤًا'], a: 0, w: 'الهمزة مفتوحة بعد ياء ساكنة، فتُكتب على نبرة.' },
+    { t: 'tf', q: 'تُكتب الهمزة المتطرفة بحسب حركتها هي لا حركة ما قبلها.', a: false, w: 'تُكتب بحسب حركة الحرف السابق لها.' },
+    { t: 'fill', q: 'تُكتب الهمزة المتطرفة على السطر إذا سبقها حرف ____.', a: 'ساكن', alts: ['ساكنًا'], w: 'مثل: جزء، شيء، سماء.' }
+  ] },
+
+{ id: 'ta', sec: 'imla', title: 'التاء المربوطة والتاء المفتوحة والهاء',
+  sum: 'تنتهي كثير من الكلمات بـ(ة) أو (ت) أو (ه)، ولكل منها مواضع محددة.',
+  blocks: [
+    { t: 'p', x: 'يتشابه في النطق عند الوقف آخر «مدرسة» و«مدرسه»، فيحتاج الكاتب إلى قاعدة تضبط الرسم.' },
+    { t: 'table', head: ['الصورة', 'متى تُكتب', 'أمثلة'], rows: [
+      ['التاء المربوطة (ة)', 'آخر الاسم المفرد المؤنث، وبعض الأعلام، وبعض الجموع، وصيغ المبالغة', 'مدرسة، طالبة، شجرة، حمزة، قضاة، علّامة'],
+      ['التاء المفتوحة (ت)', 'آخر الفعل الماضي، وجمع المؤنث السالم، والأسماء التي تاؤها أصلية أو لازمة', 'كتبتْ، كتبتُ، معلمات، وقت، بيت، صوت، موت، أخت، بنت'],
+      ['الهاء (ه)', 'ضمير الغائب المتصل، والهاء الأصلية في الاسم', 'كتابه، له، وجه، فقه']
+    ] },
+    { t: 'rule', title: 'اختبار الوقف', x: 'التاء المربوطة تُنطق <b>هاءً</b> عند الوقف: «مدرسة» ← «مدرسه». أما التاء المفتوحة فتبقى تاءً: «كتبتْ»، «وقتْ». والهاء الأصلية تبقى هاءً: «وجهْ».' },
+    { t: 'h', x: 'مواضع التاء المفتوحة بالتفصيل' },
+    { t: 'list', items: [
+      'الأفعال: «كتبتْ، كتبتُ، قالتْ، ذهبتُما».',
+      'الحروف: «ربَّتَ، ثمَّتَ، لاتَ».',
+      'جمع المؤنث السالم: «مسلمات، معلمات، سيارات».',
+      'الأسماء الثلاثية الساكنة الوسط: «بيت، صوت، وقت، موت».',
+      'أسماء تاؤها أصلية أو لازمة: «أخت، بنت، ملكوت، جبروت».'
+    ] },
+    { t: 'note', x: 'لاحظ الفرق: «صلاة» بالتاء المربوطة في المفرد، و«صلوات» بالتاء المفتوحة في جمع المؤنث السالم.' }
+  ],
+  quiz: [
+    { t: 'mcq', q: 'ما الكتابة الصحيحة؟', o: ['أخت', 'أخة', 'أخه'], a: 0, w: 'تاؤها لازمة في هذا الاسم.' },
+    { t: 'mcq', q: 'التاء في «مسلمات» تُكتب:', o: ['مربوطة', 'مفتوحة', 'هاء'], a: 1, w: 'جمع مؤنث سالم.' },
+    { t: 'tf', q: 'التاء المربوطة تُنطق هاءً عند الوقف.', a: true, w: 'مدرسة ← مدرسه عند الوقف.' },
+    { t: 'mcq', q: 'ما الكتابة الصحيحة لـ «ذهبَ» إذا أُسند إلى تاء التأنيث؟', o: ['ذهبة', 'ذهبت', 'ذهبه'], a: 1, w: 'تاء التأنيث الساكنة في آخر الفعل مفتوحة.' },
+    { t: 'mcq', q: 'ما الكتابة الصحيحة؟', o: ['بيت', 'بيتة', 'بيه'], a: 0, w: 'اسم ثلاثي ساكن الوسط، تاؤه أصلية.' },
+    { t: 'tf', q: 'تُكتب «بنت» بتاء مربوطة.', a: false, w: 'تُكتب بتاء مفتوحة: بنت.' },
+    { t: 'mcq', q: 'ما نوع الحرف الأخير في «كتابَهُ»؟', o: ['تاء مربوطة', 'تاء مفتوحة', 'هاء ضمير'], a: 2, w: 'الهاء ضمير الغائب المتصل.' }
+  ] },
+
+{ id: 'alif-layyina', sec: 'imla', title: 'الألف اللينة: القائمة والمقصورة',
+  sum: 'تُكتب الألف في آخر الكلمة قائمة (ا) أو على صورة الياء (ى)، ولكل منهما قواعد.',
+  blocks: [
+    { t: 'p', x: 'الألف اللينة في آخر الكلمة تُكتب <b>قائمة</b> (ا) أو <b>مقصورة</b> (ى) على صورة الياء من غير نقطتين، وتحكمها قواعد بحسب نوع الكلمة وعدد حروفها.' },
+    { t: 'h', x: 'الأفعال' },
+    { t: 'list', items: [
+      '<b>الثلاثية</b>: تُردّ إلى أصلها. فإن كان الأصل واوًا كُتبت ألفًا قائمة: «دعا» (دعوتُ)، «غزا» (غزوتُ). وإن كان ياء كُتبت مقصورة: «رمى» (رميتُ)، «سعى» (سعيتُ).',
+      '<b>فوق الثلاثة</b>: تُكتب مقصورة (ى): «استدعى، اهتدى، أعطى، تمنّى»، إلا إذا سُبقت بياء فتُكتب قائمة: «استحيا، أحيا، حيّا».'
+    ] },
+    { t: 'h', x: 'الأسماء' },
+    { t: 'list', items: [
+      '<b>الثلاثية</b>: تُردّ إلى أصلها بالتثنية: «عصا» (عصوان) بألف قائمة، «فتى» (فتيان) بمقصورة.',
+      '<b>فوق الثلاثة</b>: تُكتب مقصورة (ى): «مصطفى، مستشفى، ذكرى، بشرى»، إلا إذا سُبقت بياء فتُكتب قائمة: «دنيا، ثريا».',
+      '<b>الأعلام الأعجمية</b> تُكتب قائمة غالبًا: «أمريكا، إيطاليا»، ويُستثنى منها: «موسى، عيسى، كسرى، بخارى».'
+    ] },
+    { t: 'h', x: 'الحروف والأسماء المبنية' },
+    { t: 'p', x: 'الأصل في الحروف الكتابة بألف قائمة: «ما، لا، يا، أما، إذا، كلا». ويُستثنى منها: <b>إلى، على، حتى، بلى، لدى، متى</b> فتُكتب بالألف المقصورة.' },
+    { t: 'note', x: 'العلم «يحيى» يُكتب بالألف المقصورة استثناءً، تمييزًا له عن الفعل «يحيا»، رغم أنه سُبق بياء.' }
+  ],
+  quiz: [
+    { t: 'mcq', q: 'ما الكتابة الصحيحة؟', o: ['دعا', 'دعى'], a: 0, w: 'أصل الألف واو: دعوتُ.' },
+    { t: 'mcq', q: 'ما الكتابة الصحيحة؟', o: ['رمى', 'رما'], a: 0, w: 'أصل الألف ياء: رميتُ.' },
+    { t: 'mcq', q: 'ما الكتابة الصحيحة؟', o: ['مستشفا', 'مستشفى'], a: 1, w: 'اسم فوق الثلاثة غير مسبوق بياء.' },
+    { t: 'mcq', q: 'ما الكتابة الصحيحة؟', o: ['دنيا', 'دنيى'], a: 0, w: 'سُبقت الألف بياء فتُكتب قائمة.' },
+    { t: 'mcq', q: 'ما الكتابة الصحيحة؟', o: ['حتا', 'حتى'], a: 1, w: 'من الحروف المستثناة التي تُكتب بالمقصورة.' },
+    { t: 'tf', q: 'تُكتب «أمريكا» بألف قائمة.', a: true, w: 'الأعلام الأعجمية تُكتب بألف قائمة غالبًا.' },
+    { t: 'tf', q: 'تُكتب كلمة «إلى» بألف قائمة.', a: false, w: 'تُكتب بألف مقصورة: إلى.' },
+    { t: 'mcq', q: 'ما الكتابة الصحيحة؟', o: ['استدعى', 'استدعا'], a: 0, w: 'فعل فوق الثلاثة غير مسبوق بياء.' }
+  ] }
+
+);
+
+</script>
+<script>
+/* بَيَان | BAYAN — منطق التطبيق */
+(function () {
+  'use strict';
+
+  var B = window.BAYAN;
+  var main = document.getElementById('main');
+  var root = document.documentElement;
+  var KEY = 'bayan:v1';
+  var DEF = { theme: 'emerald', mode: 'auto', fs: 19, lh: 1.9, favs: [], results: {} };
+  var THEME_IDS = ['emerald', 'navy', 'burgundy'];
+
+  if (!B || !main) { if (main) main.innerHTML = '<p class="box note">تعذّر تحميل بيانات التطبيق.</p>'; return; }
+
+  /* ---------- التخزين ---------- */
+  function load() {
+    var s = {};
+    try { s = JSON.parse(localStorage.getItem(KEY) || '{}') || {}; } catch (e) { s = {}; }
+    var o = {
+      theme: THEME_IDS.indexOf(s.theme) > -1 ? s.theme : DEF.theme,
+      mode: ['light', 'dark', 'auto'].indexOf(s.mode) > -1 ? s.mode : DEF.mode,
+      fs: Math.min(26, Math.max(15, Number(s.fs) || DEF.fs)),
+      lh: [1.7, 1.9, 2.1].indexOf(Number(s.lh)) > -1 ? Number(s.lh) : DEF.lh,
+      favs: Array.isArray(s.favs) ? s.favs.filter(function (x) { return typeof x === 'string'; }) : [],
+      results: (s.results && typeof s.results === 'object') ? s.results : {}
+    };
+    return o;
+  }
+  var S = load();
+  function save() { try { localStorage.setItem(KEY, JSON.stringify(S)); } catch (e) { /* التخزين غير متاح */ } }
+
+  /* ---------- أدوات ---------- */
+  function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); }
+  function strip(h) { return String(h).replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim(); }
+  function topicById(id) { for (var i = 0; i < B.topics.length; i++) if (B.topics[i].id === id) return B.topics[i]; return null; }
+  function sectionById(id) { for (var i = 0; i < B.sections.length; i++) if (B.sections[i].id === id) return B.sections[i]; return null; }
+  function topicsOf(sec) { return B.topics.filter(function (t) { return t.sec === sec; }); }
+  function ordered() {
+    var out = [];
+    B.sections.forEach(function (s) { out = out.concat(topicsOf(s.id)); });
+    return out;
+  }
+  function isFav(id) { return S.favs.indexOf(id) > -1; }
+  var BOOKMARK = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h12v18l-6-4-6 4z"/></svg>';
+
+  /* ---------- المظهر ---------- */
+  var mq = window.matchMedia ? window.matchMedia('(prefers-color-scheme: dark)') : null;
+  function resolvedMode() { return S.mode === 'auto' ? ((mq && mq.matches) ? 'dark' : 'light') : S.mode; }
+  function applyPrefs() {
+    root.setAttribute('data-theme', S.theme);
+    root.setAttribute('data-mode', resolvedMode());
+    root.style.setProperty('--fs', S.fs);
+    root.style.setProperty('--lh', S.lh);
+    var th = B.themes.filter(function (t) { return t.id === S.theme; })[0];
+    var meta = document.getElementById('meta-theme');
+    if (meta && th) meta.setAttribute('content', th.primary);
+    var badge = document.getElementById('fav-badge');
+    if (badge) { badge.textContent = S.favs.length; badge.hidden = S.favs.length === 0; }
+    var mb = document.getElementById('mode-btn');
+    if (mb) mb.setAttribute('aria-pressed', resolvedMode() === 'dark' ? 'true' : 'false');
+  }
+  if (mq && mq.addEventListener) mq.addEventListener('change', function () { if (S.mode === 'auto') applyPrefs(); });
+
+  /* ---------- البحث ---------- */
+  function norm(s) {
+    var out = '', map = [];
+    for (var i = 0; i < s.length; i++) {
+      var c = s.charAt(i), code = s.charCodeAt(i);
+      if ((code >= 0x64B && code <= 0x65F) || code === 0x670 || code === 0x640 || code === 0x621) continue;
+      if ('أإآٱ'.indexOf(c) > -1) c = 'ا';
+      else if (c === 'ة') c = 'ه';
+      else if (c === 'ى') c = 'ي';
+      else if (c === 'ؤ') c = 'و';
+      else if (c === 'ئ') c = 'ي';
+      out += c.toLowerCase(); map.push(i);
+    }
+    return { n: out, m: map };
+  }
+  var INDEX = null;
+  function buildIndex() {
+    INDEX = B.topics.map(function (t) {
+      var parts = [];
+      t.blocks.forEach(function (b) {
+        if (b.x) parts.push(strip(b.x));
+        if (b.title) parts.push(b.title);
+        if (b.items) b.items.forEach(function (it) { parts.push(typeof it === 'string' ? strip(it) : strip(it.s + ' ' + it.i)); });
+        if (b.head) parts.push(b.head.join(' '));
+        if (b.rows) b.rows.forEach(function (r) { parts.push(r.join(' ')); });
+      });
+      var body = parts.join(' ');
+      return { t: t, title: norm(t.title).n, sum: norm(t.sum).n, body: body, nb: norm(body) };
+    });
+  }
+  function search(q) {
+    if (!INDEX) buildIndex();
+    var toks = norm(q).n.split(/\s+/).filter(Boolean);
+    if (!toks.length) return [];
+    var res = [];
+    INDEX.forEach(function (e) {
+      var score = 0, ok = true;
+      toks.forEach(function (tk) {
+        var inT = e.title.indexOf(tk) > -1, inS = e.sum.indexOf(tk) > -1, inB = e.nb.n.indexOf(tk) > -1;
+        if (!(inT || inS || inB)) ok = false;
+        score += (inT ? 5 : 0) + (inS ? 2 : 0) + (inB ? 1 : 0);
+      });
+      if (ok) res.push({ e: e, score: score, tk: toks });
+    });
+    res.sort(function (a, b) { return b.score - a.score; });
+    return res;
+  }
+  function snippet(r) {
+    var e = r.e, tk = r.tk, idx = -1, len = 0;
+    for (var i = 0; i < tk.length; i++) {
+      var p = e.nb.n.indexOf(tk[i]);
+      if (p > -1) { idx = p; len = tk[i].length; break; }
+    }
+    if (idx < 0) return esc(e.t.sum);
+    var s0 = e.nb.m[idx], s1 = e.nb.m[Math.min(idx + len - 1, e.nb.m.length - 1)] + 1;
+    var from = Math.max(0, s0 - 50), to = Math.min(e.body.length, s1 + 80);
+    return (from > 0 ? '… ' : '') + esc(e.body.slice(from, s0)) + '<mark>' + esc(e.body.slice(s0, s1)) + '</mark>' + esc(e.body.slice(s1, to)) + (to < e.body.length ? ' …' : '');
+  }
+
+  /* ---------- مكونات العرض ---------- */
+  function crumbs(list) {
+    return '<nav class="crumbs" aria-label="مسار التنقل">' + list.map(function (c, i) {
+      var last = i === list.length - 1;
+      return (c.href && !last ? '<a href="' + c.href + '">' + c.t + '</a>' : '<span' + (last ? ' aria-current="page"' : '') + '>' + c.t + '</span>') + (last ? '' : '<span aria-hidden="true">›</span>');
+    }).join('') + '</nav>';
+  }
+  function topicCard(t, i) {
+    var sec = sectionById(t.sec), r = S.results[t.id];
+    return '<a class="card topic-item" href="#/topic/' + t.id + '"><span class="topic-num" aria-hidden="true">' + (i + 1) + '</span><div><h3>' + t.title + '</h3><p>' + t.sum + '</p>' +
+      '<span class="pill">' + sec.title + '</span>' + (isFav(t.id) ? '<span class="pill">في المفضلة</span>' : '') +
+      (r ? '<span class="pill">آخر نتيجة: ' + r.s + '/' + r.t + '</span>' : '') + '</div></a>';
+  }
+  function footerCredit() {
+    return '<div class="credit-card"><div class="credit-ar" style="font-family:var(--font-text);font-size:1.4rem;font-weight:700;color:var(--head)">إعداد الطالب: محمد بنيران</div>' +
+      '<div dir="ltr" lang="en" style="letter-spacing:.14em;color:var(--accent-text);margin-top:2px">Mohammed Beniran</div></div>';
+  }
+
+  function renderBlock(b, i) {
+    switch (b.t) {
+      case 'h': return '<h2 class="b-h" id="s' + i + '">' + b.x + '</h2>';
+      case 'p': return '<p class="b-p">' + b.x + '</p>';
+      case 'list': return '<ul class="b-list">' + b.items.map(function (x) { return '<li>' + x + '</li>'; }).join('') + '</ul>';
+      case 'rule': return '<aside class="box"><div class="box-title">' + (b.title || 'قاعدة') + '</div><div>' + b.x + '</div></aside>';
+      case 'note': return '<aside class="box note"><div class="box-title">تنبيه</div><div>' + b.x + '</div></aside>';
+      case 'khilaf': return '<aside class="box khilaf"><div class="box-title">خلاف علمي</div><div>' + b.x + '</div></aside>';
+      case 'table':
+        return '<div class="table-wrap" tabindex="0" role="region" aria-label="جدول"><table><thead><tr>' + b.head.map(function (h) { return '<th scope="col">' + h + '</th>'; }).join('') +
+          '</tr></thead><tbody>' + b.rows.map(function (r) { return '<tr>' + r.map(function (c) { return '<td>' + c + '</td>'; }).join('') + '</tr>'; }).join('') + '</tbody></table></div>';
+      case 'ex':
+        return '<div class="ex-title">أمثلة وإعراب</div><div class="ex-list">' + b.items.map(function (e) {
+          return '<div class="ex"><p class="ar">' + e.s + '</p><p class="i3">' + e.i + '</p></div>';
+        }).join('') + '</div>';
+      default: return '';
+    }
+  }
+
+  /* ---------- الاختبار ---------- */
+  var Q = { id: null, started: false, ans: [] };
+  function resetQuiz(id) { Q = { id: id, started: false, ans: [] }; }
+
+  function plainAns(s) { return String(s).replace(/[\u064B-\u065F\u0670\u0640]/g, '').replace(/\s+/g, ' ').trim(); }
+  function checkFill(q, v) {
+    var cands = [q.a].concat(q.alts || []).map(plainAns), x = plainAns(v);
+    return x.length > 0 && cands.indexOf(x) > -1;
+  }
+  function quizHTML(t) {
+    var r = S.results[t.id];
+    var head = '<h2>اختبر نفسك <span class="quiz-opt-tag">اختياري</span></h2>';
+    if (!Q.started) {
+      return '<section class="quiz" id="quiz" aria-labelledby="quiz-h">' + head.replace('<h2>', '<h2 id="quiz-h">') +
+        '<p>' + t.quiz.length + ' أسئلة على هذا الموضوع مع تصحيح فوري وبيان سبب الإجابة.' + (r ? ' آخر نتيجة لك: <b>' + r.s + ' من ' + r.t + '</b>.' : '') + '</p>' +
+        '<button class="btn solid" type="button" data-action="quiz-start">ابدأ الاختبار</button></section>';
+    }
+    var done = Q.ans.filter(function (a) { return a; }).length, score = Q.ans.filter(function (a) { return a && a.ok; }).length;
+    var html = '<section class="quiz" id="quiz" aria-labelledby="quiz-h">' + head.replace('<h2>', '<h2 id="quiz-h">');
+    t.quiz.forEach(function (q, i) {
+      var a = Q.ans[i];
+      html += '<div class="q" id="q' + i + '"><p class="q-text"><span class="n">' + (i + 1) + '</span>' + q.q + '</p>';
+      if (q.t === 'mcq') {
+        html += '<div class="opts">' + q.o.map(function (o, j) {
+          var cls = '';
+          if (a) cls = j === q.a ? ' correct' : (j === a.v ? ' wrong' : '');
+          return '<button type="button" class="opt' + cls + '" data-action="ans" data-q="' + i + '" data-v="' + j + '"' + (a ? ' disabled' : '') + '>' + o + '</button>';
+        }).join('') + '</div>';
+      } else if (q.t === 'tf') {
+        html += '<div class="opts">' + [['1', 'صح'], ['0', 'خطأ']].map(function (o) {
+          var isRight = (o[0] === '1') === q.a, cls = '';
+          if (a) cls = isRight ? ' correct' : (a.v === o[0] ? ' wrong' : '');
+          return '<button type="button" class="opt' + cls + '" data-action="ans" data-q="' + i + '" data-v="' + o[0] + '"' + (a ? ' disabled' : '') + '>' + o[1] + '</button>';
+        }).join('') + '</div>';
+      } else {
+        html += '<div class="fill"><input type="text" id="f' + i + '" dir="rtl" lang="ar" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="إجابتك" value="' + (a ? esc(a.v) : '') + '"' + (a ? ' disabled class="' + (a.ok ? 'correct' : 'wrong') + '"' : '') + '>' +
+          (a ? '' : '<button type="button" class="btn solid" data-action="fill" data-q="' + i + '">تحقق</button>') + '</div>';
+      }
+      if (a) {
+        html += '<div class="why ' + (a.ok ? 'ok' : 'no') + '" role="status"><b>' + (a.ok ? 'إجابة صحيحة. ' : 'إجابة غير صحيحة. ') + '</b>' +
+          (!a.ok && q.t === 'fill' ? 'الإجابة الصحيحة: <b>' + esc(q.a) + '</b>. ' : '') + q.w + '</div>';
+      }
+      html += '</div>';
+    });
+    if (done === t.quiz.length) {
+      html += '<div class="score" role="status"><div>نتيجتك</div><strong>' + score + ' من ' + t.quiz.length + '</strong><div style="margin-top:12px"><button class="btn" type="button" data-action="quiz-reset">أعد الاختبار</button></div></div>';
+    }
+    return html + '</section>';
+  }
+  function refreshQuiz(t, keepScroll) {
+    var el = document.getElementById('quiz');
+    if (!el) return;
+    var y = window.scrollY;
+    el.outerHTML = quizHTML(t);
+    if (keepScroll) window.scrollTo(0, y);
+  }
+  function answer(qi, v) {
+    var t = topicById(Q.id);
+    if (!t || Q.ans[qi]) return;
+    var q = t.quiz[qi], ok;
+    if (q.t === 'mcq') ok = Number(v) === q.a;
+    else if (q.t === 'tf') ok = (v === '1') === q.a;
+    else { if (!plainAns(v)) return; ok = checkFill(q, v); }
+    Q.ans[qi] = { v: v, ok: ok };
+    var n = 0, s = 0;
+    for (var i = 0; i < t.quiz.length; i++) { if (Q.ans[i]) { n++; if (Q.ans[i].ok) s++; } }
+    if (n === t.quiz.length) { S.results[t.id] = { s: s, t: t.quiz.length }; save(); }
+    refreshQuiz(t, true);
+  }
+
+  /* ---------- الصفحات ---------- */
+  function viewHome() {
+    var secs = B.sections.map(function (s) {
+      var ts = topicsOf(s.id);
+      return '<a class="card sec-card" href="#/section/' + s.id + '"><span class="sec-mark" aria-hidden="true">' + s.mark + '</span><h3>' + s.title + '</h3><p>' + s.blurb + '</p><ul class="mini">' +
+        ts.slice(0, 3).map(function (t) { return '<li>' + t.title + '</li>'; }).join('') + '</ul><span class="more">' + ts.length + ' موضوعات ←</span></a>';
+    }).join('');
+    return '<section class="hero fade"><p class="eyebrow">موسوعة تفاعلية للنحو والصرف والإملاء</p><h1 class="brand-title">بَيَان <span>| BAYAN</span></h1>' +
+      '<p class="tagline">رحلة في أسرار اللغة العربية</p>' +
+      '<p class="lead">شروحات دقيقة وأمثلة معربة وجداول مرتبة، مع اختبارات اختيارية في نهاية كل موضوع.</p>' +
+      '<form class="search" role="search" data-form="hero-search"><input type="search" name="q" placeholder="ابحث: المبتدأ، الهمزة، اسم الفاعل…" aria-label="ابحث في الموسوعة" autocomplete="off"><button class="btn" type="submit">بحث</button></form></section>' +
+      '<div class="sec-head"><h2>الأقسام</h2><p>اختر علمًا لتبدأ</p></div><div class="grid">' + secs + '</div>' +
+      '<div class="sec-head" id="appearance"><h2>المظهر</h2><p>اختر الثيم الذي يريحك</p></div>' + appearanceHTML() +
+      footerCredit();
+  }
+  function appearanceHTML() {
+    var cards = B.themes.map(function (t) {
+      return '<button type="button" class="card theme-card" data-action="theme" data-id="' + t.id + '" aria-pressed="' + (S.theme === t.id) + '">' +
+        '<span class="preview" aria-hidden="true" style="background:' + t.bg + '"><span class="pv-bar" style="background:' + t.primary + '"><i style="background:' + t.accent + '"></i><i style="background:' + t.secondary + '"></i></span>' +
+        '<span class="pv-body"><b style="background:' + t.primary + ';width:70%"></b><b style="background:' + t.secondary + ';width:92%"></b><b style="background:' + t.accent + ';width:45%"></b></span></span>' +
+        '<span class="swatches" aria-hidden="true"><i style="background:' + t.primary + '"></i><i style="background:' + t.secondary + '"></i><i style="background:' + t.bg + '"></i><i style="background:' + t.accent + '"></i></span>' +
+        '<strong>' + t.name + '</strong><small>' + t.hint + (S.theme === t.id ? ' — مُفعَّل' : '') + '</small></button>';
+    }).join('');
+    return '<div class="grid">' + cards + '</div>' + modeControl();
+  }
+  function segMode() {
+    var opts = [['light', 'فاتح'], ['dark', 'ليلي'], ['auto', 'تلقائي']];
+    return '<div class="seg" role="group" aria-label="الوضع">' + opts.map(function (o) {
+      return '<button type="button" data-action="mode" data-v="' + o[0] + '" aria-pressed="' + (S.mode === o[0]) + '">' + o[1] + '</button>';
+    }).join('') + '</div>';
+  }
+  function modeControl() {
+    return '<div class="mode-row"><span>الوضع الليلي:</span>' + segMode() + '</div>';
+  }
+
+  function viewSection(id) {
+    var s = sectionById(id);
+    if (!s) return viewNotFound();
+    var ts = topicsOf(id);
+    document.title = s.title + ' — بَيَان';
+    return crumbs([{ t: 'الرئيسية', href: '#/' }, { t: s.title }]) + '<h1 class="page-title">' + s.title + '</h1><p class="page-sub">' + s.blurb + '</p>' +
+      '<div class="topic-list">' + ts.map(topicCard).join('') + '</div>';
+  }
+
+  function viewTopic(id) {
+    var t = topicById(id);
+    if (!t) return viewNotFound();
+    if (Q.id !== id) resetQuiz(id);
+    var sec = sectionById(t.sec), all = ordered(), pos = all.indexOf(t);
+    var prev = all[pos - 1], next = all[pos + 1];
+    document.title = t.title + ' — بَيَان';
+    var toc = '';
+    t.blocks.forEach(function (b, i) { if (b.t === 'h') toc += '<button type="button" class="chip" data-action="scroll" data-to="s' + i + '">' + b.x + '</button>'; });
+    var body = t.blocks.map(renderBlock).join('');
+    return crumbs([{ t: 'الرئيسية', href: '#/' }, { t: sec.title, href: '#/section/' + sec.id }, { t: t.title }]) +
+      '<div class="topic-top"><div><h1 class="page-title">' + t.title + '</h1><p class="page-sub">' + t.sum + '</p></div>' +
+      '<button type="button" class="fav-btn" data-action="fav" data-id="' + t.id + '" aria-pressed="' + isFav(t.id) + '" aria-label="' + (isFav(t.id) ? 'إزالة من المفضلة' : 'إضافة إلى المفضلة') + '">' + BOOKMARK + '</button></div>' +
+      (toc ? '<div class="toc" aria-label="محتويات الموضوع">' + toc + '</div>' : '') +
+      '<article class="reading fade">' + body + '</article>' + quizHTML(t) +
+      '<nav class="pager" aria-label="التنقل بين الموضوعات">' +
+      (next ? '<a href="#/topic/' + next.id + '"><small>الموضوع التالي ←</small>' + next.title + '</a>' : '') +
+      (prev ? '<a href="#/topic/' + prev.id + '"><small>→ الموضوع السابق</small>' + prev.title + '</a>' : '') + '</nav>';
+  }
+
+  function viewFavorites() {
+    document.title = 'المفضلة — بَيَان';
+    var ts = S.favs.map(topicById).filter(Boolean);
+    return crumbs([{ t: 'الرئيسية', href: '#/' }, { t: 'المفضلة' }]) + '<h1 class="page-title">المفضلة</h1>' +
+      (ts.length ? '<div class="topic-list">' + ts.map(topicCard).join('') + '</div>' :
+        '<div class="empty"><p>لم تضف أي موضوع إلى المفضلة بعد.</p><p>افتح أي موضوع واضغط على أيقونة العلامة لحفظه هنا.</p><a class="btn solid" href="#/section/nahw">ابدأ من النحو</a></div>');
+  }
+
+  function viewSearch(q) {
+    document.title = 'بحث — بَيَان';
+    return crumbs([{ t: 'الرئيسية', href: '#/' }, { t: 'بحث' }]) + '<h1 class="page-title">البحث</h1><div class="search-page">' +
+      '<input type="search" id="q" value="' + esc(q) + '" placeholder="اكتب كلمة أو أكثر…" aria-label="ابحث في الموسوعة" autocomplete="off"></div>' +
+      '<div id="results" aria-live="polite">' + resultsHTML(q) + '</div>';
+  }
+  function resultsHTML(q) {
+    if (!q.trim()) return '<p class="page-sub" style="margin-top:14px">يبحث في العناوين والشروحات والأمثلة، ولا يتأثر بالتشكيل أو شكل الهمزة.</p>';
+    var rs = search(q);
+    if (!rs.length) return '<div class="empty"><p>لا نتائج للبحث عن «' + esc(q) + '».</p><p>جرّب كلمة أخرى أو تصفح الأقسام.</p></div>';
+    return '<p class="page-sub" style="margin-top:14px">' + rs.length + ' نتيجة</p><div class="topic-list">' + rs.map(function (r) {
+      var t = r.e.t;
+      return '<a class="card" href="#/topic/' + t.id + '"><h3 style="margin:0">' + t.title + '</h3><span class="pill">' + sectionById(t.sec).title + '</span><p class="snip">' + snippet(r) + '</p></a>';
+    }).join('') + '</div>';
+  }
+
+  function viewSettings() {
+    document.title = 'الإعدادات — بَيَان';
+    var lhs = [[1.7, 'مضغوط'], [1.9, 'متوسط'], [2.1, 'واسع']];
+    return crumbs([{ t: 'الرئيسية', href: '#/' }, { t: 'الإعدادات' }]) + '<h1 class="page-title">الإعدادات</h1>' +
+      '<div class="card">' +
+      '<div class="set-row"><label for="fs">حجم الخط: <b id="fs-v">' + S.fs + '</b></label><input type="range" id="fs" min="15" max="26" step="1" value="' + S.fs + '"></div>' +
+      '<div class="set-row"><span class="lbl">تباعد الأسطر</span><div class="seg" role="group" aria-label="تباعد الأسطر">' + lhs.map(function (o) {
+        return '<button type="button" data-action="lh" data-v="' + o[0] + '" aria-pressed="' + (S.lh === o[0]) + '">' + o[1] + '</button>'; }).join('') + '</div></div>' +
+      '<div class="set-row"><span class="lbl">الوضع الليلي</span>' + segMode() + '</div>' +
+      '<div class="set-row"><span class="lbl">المظهر (الثيم)</span><a class="btn" href="#/appearance">تغيير من الصفحة الرئيسية</a></div>' +
+      '<div class="sample reading" id="sample"><b>معاينة القراءة:</b> العلمُ نورٌ، والجهلُ ظلامٌ؛ فاطلبِ العلمَ تهتدِ.</div>' +
+      '<div class="set-row"><span class="lbl">البيانات المحفوظة</span><span><button class="btn" type="button" data-action="reset-prefs">إعادة الإعدادات</button> <button class="btn danger" type="button" data-action="clear-data">مسح المفضلة والنتائج</button></span></div>' +
+      '</div><p class="page-sub" style="margin-top:12px">تُحفظ تفضيلاتك تلقائيًا في هذا المتصفح فقط.</p>';
+  }
+
+  function viewAbout() {
+    document.title = 'حول التطبيق — بَيَان';
+    return crumbs([{ t: 'الرئيسية', href: '#/' }, { t: 'حول التطبيق' }]) + '<h1 class="page-title">حول التطبيق</h1>' +
+      '<div class="reading"><p class="b-p"><b>بَيَان | BAYAN</b> موسوعة تعليمية تفاعلية لعلوم النحو والصرف والإملاء العربي، شعارها: «رحلة في أسرار اللغة العربية». تجمع القواعد والتعريفات والأمثلة المعربة والجداول، وتضيف اختبارات اختيارية في نهاية كل موضوع.</p>' +
+      '<h2 class="b-h">ما يقدمه التطبيق</h2><ul class="b-list"><li>' + B.topics.length + ' موضوعًا في ثلاثة أقسام: النحو والصرف والإملاء.</li><li>ثلاثة ثيمات ووضع ليلي وتحكم في حجم الخط وتباعد الأسطر.</li><li>بحث في كامل المحتوى، ومفضلة، وحفظ التفضيلات في المتصفح.</li><li>يعمل دون اتصال بالإنترنت بعد فتح الملفات (تتحسن الخطوط عند توفر الاتصال).</li></ul>' +
+      '<h2 class="b-h">للاستزادة</h2><p class="b-p">للتوسع يُرجع إلى المصادر التعليمية المعروفة، ومنها: «شرح ابن عقيل على ألفية ابن مالك»، «أوضح المسالك إلى ألفية ابن مالك» لابن هشام، «شذا العرف في فن الصرف» للحملاوي، «جامع الدروس العربية» للغلاييني، «النحو الوافي» لعباس حسن.</p></div>' +
+      footerCredit();
+  }
+
+  function viewNotFound() {
+    document.title = 'الصفحة غير موجودة — بَيَان';
+    return '<div class="empty"><h1 class="page-title">الصفحة غير موجودة</h1><p>الرابط الذي فتحته غير صحيح.</p><a class="btn solid" href="#/">العودة إلى الرئيسية</a></div>';
+  }
+
+  /* ---------- التوجيه ---------- */
+  var CUR = '';
+  function route(hash) {
+    var raw = (typeof hash === 'string') ? hash : (location.hash || '');
+    CUR = raw;
+    var h = raw.replace(/^#\/?/, ''), qs = '';
+    var qi = h.indexOf('?');
+    if (qi > -1) { qs = h.slice(qi + 1); h = h.slice(0, qi); }
+    var p = h.split('/').filter(Boolean), html, scrollTo = null;
+    try {
+      var name = p[0] || '';
+      if (name === '') { html = viewHome(); document.title = 'بَيَان | BAYAN — رحلة في أسرار اللغة العربية'; }
+      else if (name === 'appearance') { html = viewHome(); scrollTo = 'appearance'; }
+      else if (name === 'section') html = viewSection(p[1]);
+      else if (name === 'topic') html = viewTopic(decodeURIComponent(p[1] || ''));
+      else if (name === 'favorites') html = viewFavorites();
+      else if (name === 'search') {
+        var m = /(?:^|&)q=([^&]*)/.exec(qs), q = '';
+        try { q = m ? decodeURIComponent(m[1].replace(/\+/g, ' ')) : ''; } catch (e) { q = ''; }
+        html = viewSearch(q);
+      }
+      else if (name === 'settings') html = viewSettings();
+      else if (name === 'about') html = viewAbout();
+      else html = viewNotFound();
+    } catch (err) {
+      if (window.console) console.error(err);
+      html = '<div class="empty"><h1 class="page-title">حدث خطأ غير متوقع</h1><p>تعذّر عرض هذه الصفحة.</p><a class="btn solid" href="#/">العودة إلى الرئيسية</a></div>';
+    }
+    main.innerHTML = html;
+    applyPrefs();
+    if (scrollTo) {
+      var el = document.getElementById(scrollTo);
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else window.scrollTo(0, 0);
+    if (p[0] === 'search') { var qi2 = document.getElementById('q'); if (qi2 && !qi2.value) qi2.focus(); }
+  }
+
+  /* ---------- الأحداث ---------- */
+  document.addEventListener('click', function (e) {
+    var el = e.target.closest ? e.target.closest('[data-action]') : null;
+    if (!el) return;
+    var a = el.getAttribute('data-action'), d = el.dataset;
+    try {
+      switch (a) {
+        case 'theme':
+          S.theme = d.id; save(); applyPrefs();
+          document.querySelectorAll('[data-action="theme"]').forEach(function (b) {
+            var on = b.getAttribute('data-id') === S.theme;
+            b.setAttribute('aria-pressed', on);
+            var sm = b.querySelector('small'), th = B.themes.filter(function (t) { return t.id === b.getAttribute('data-id'); })[0];
+            if (sm && th) sm.textContent = th.hint + (on ? ' — مُفعَّل' : '');
+          });
+          break;
+        case 'mode':
+          S.mode = d.v; save(); applyPrefs();
+          document.querySelectorAll('[data-action="mode"]').forEach(function (b) { b.setAttribute('aria-pressed', b.getAttribute('data-v') === S.mode); });
+          break;
+        case 'toggle-mode':
+          S.mode = resolvedMode() === 'dark' ? 'light' : 'dark'; save(); applyPrefs();
+          document.querySelectorAll('[data-action="mode"]').forEach(function (b) { b.setAttribute('aria-pressed', b.getAttribute('data-v') === S.mode); });
+          break;
+        case 'lh':
+          S.lh = Number(d.v); save(); applyPrefs();
+          document.querySelectorAll('[data-action="lh"]').forEach(function (b) { b.setAttribute('aria-pressed', Number(b.getAttribute('data-v')) === S.lh); });
+          break;
+        case 'fav':
+          var i = S.favs.indexOf(d.id);
+          if (i > -1) S.favs.splice(i, 1); else S.favs.push(d.id);
+          save(); applyPrefs();
+          el.setAttribute('aria-pressed', isFav(d.id));
+          el.setAttribute('aria-label', isFav(d.id) ? 'إزالة من المفضلة' : 'إضافة إلى المفضلة');
+          break;
+        case 'scroll':
+          var t = document.getElementById(d.to); if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          break;
+        case 'quiz-start':
+          Q.started = true; Q.ans = []; refreshQuiz(topicById(Q.id), false);
+          var qz = document.getElementById('quiz'); if (qz) qz.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          break;
+        case 'quiz-reset':
+          Q.started = true; Q.ans = []; refreshQuiz(topicById(Q.id), false);
+          var qz2 = document.getElementById('quiz'); if (qz2) qz2.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          break;
+        case 'ans': answer(Number(d.q), d.v); break;
+        case 'fill':
+          var inp = document.getElementById('f' + d.q);
+          if (inp) answer(Number(d.q), inp.value);
+          break;
+        case 'reset-prefs':
+          S.theme = DEF.theme; S.mode = DEF.mode; S.fs = DEF.fs; S.lh = DEF.lh; save(); applyPrefs(); route(CUR);
+          break;
+        case 'clear-data':
+          if (window.confirm('سيتم مسح المفضلة ونتائج الاختبارات. هل تريد المتابعة؟')) { S.favs = []; S.results = {}; save(); applyPrefs(); route(CUR); }
+          break;
+      }
+    } catch (err) { if (window.console) console.error(err); }
+  });
+
+  document.addEventListener('input', function (e) {
+    var t = e.target;
+    if (t.id === 'fs') {
+      S.fs = Number(t.value); save(); applyPrefs();
+      var v = document.getElementById('fs-v'); if (v) v.textContent = S.fs;
+    } else if (t.id === 'q') {
+      var q = t.value;
+      document.getElementById('results').innerHTML = resultsHTML(q);
+      try { history.replaceState(null, '', '#/search' + (q ? '?q=' + encodeURIComponent(q) : '')); } catch (err) { /* تجاهل */ }
+    }
+  });
+
+  document.addEventListener('submit', function (e) {
+    if (e.target.getAttribute && e.target.getAttribute('data-form') === 'hero-search') {
+      e.preventDefault();
+      var q = e.target.elements.q.value.trim();
+      go('#/search' + (q ? '?q=' + encodeURIComponent(q) : ''));
+    }
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter' && e.target && /^f\d+$/.test(e.target.id || '')) {
+      e.preventDefault();
+      answer(Number(e.target.id.slice(1)), e.target.value);
+    }
+  });
+
+  /* تنقّل موثوق حتى في المعاينات التي لا تُطلق hashchange (iframe/عارض الملفات) */
+  function go(h) {
+    try { location.hash = h; } catch (e) { /* تجاهل */ }
+    route(h);
+  }
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest ? e.target.closest('a[href^="#/"]') : null;
+    if (!a || e.defaultPrevented || e.ctrlKey || e.metaKey || e.shiftKey || e.button > 0) return;
+    e.preventDefault();
+    go(a.getAttribute('href'));
+  });
+  window.addEventListener('hashchange', function () { if ((location.hash || '') !== CUR) route(); });
+  window.addEventListener('error', function (e) { if (window.console) console.error(e.message); });
+
+  applyPrefs();
+  route();
+})();
+
+</script>
+</body>
+</html>
